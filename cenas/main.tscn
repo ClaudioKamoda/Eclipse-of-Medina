@@ -1,7 +1,23 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://cenas/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://imagens/Rogue/Run/run1.png" type="Texture" id=3]
+[ext_resource path="res://imagens/Rogue/Run/run2.png" type="Texture" id=4]
+[ext_resource path="res://imagens/Rogue/Run/run3.png" type="Texture" id=5]
+[ext_resource path="res://imagens/Rogue/Run/run4.png" type="Texture" id=6]
+[ext_resource path="res://imagens/Rogue/Run/run5.png" type="Texture" id=7]
+[ext_resource path="res://imagens/Rogue/Run/run6.png" type="Texture" id=8]
+[ext_resource path="res://imagens/Rogue/Run/run7.png" type="Texture" id=9]
+[ext_resource path="res://imagens/Rogue/Run/run8.png" type="Texture" id=10]
+[ext_resource path="res://imagens/Rogue/Jump/jump1.png" type="Texture" id=11]
+[ext_resource path="res://imagens/Rogue/Jump/jump2.png" type="Texture" id=12]
+[ext_resource path="res://imagens/Rogue/Jump/jump3.png" type="Texture" id=13]
+[ext_resource path="res://imagens/Rogue/Jump/jump4.png" type="Texture" id=14]
+[ext_resource path="res://imagens/Rogue/Jump/jump5.png" type="Texture" id=15]
+[ext_resource path="res://imagens/Rogue/Jump/jump6.png" type="Texture" id=16]
+[ext_resource path="res://imagens/Rogue/Jump/jump7.png" type="Texture" id=17]
+[ext_resource path="res://imagens/Rogue/rogue.png" type="Texture" id=18]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -24,6 +40,24 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 } ]
 0/z_index = 0
 
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "Run",
+"speed": 9.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "Pulo",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "Parado",
+"speed": 5.0
+} ]
+
 [node name="main" type="Node"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -33,3 +67,13 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 
 [node name="player" parent="TileMap" instance=ExtResource( 2 )]
 position = Vector2( 217.321, 530.631 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="TileMap/player"]
+position = Vector2( -60.6502, -65.3156 )
+frames = SubResource( 3 )
+animation = "Pulo"
+frame = 5
+playing = true
+centered = false
+offset = Vector2( -22, -14 )
+flip_h = true
