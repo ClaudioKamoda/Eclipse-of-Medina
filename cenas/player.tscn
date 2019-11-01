@@ -1,19 +1,33 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.8735, 31.8546 )
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 32 )
+
 [node name="player" type="KinematicBody2D"]
 script = ExtResource( 1 )
-timerPath = NodePath("Timer")
+timerPath = NodePath("timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -1 )
 shape = SubResource( 1 )
 
-[node name="Timer" type="Timer" parent="."]
+[node name="timer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+drag_margin_v_enabled = false
+
+[node name="CameraHandler" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraHandler"]
+shape = SubResource( 2 )
+
+[node name="CameraTween" type="Tween" parent="CameraHandler"]
+[connection signal="timeout" from="timer" to="." method="_on_Timer_timeout"]

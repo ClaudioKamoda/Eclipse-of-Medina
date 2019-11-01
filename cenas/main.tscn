@@ -1,15 +1,15 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://cenas/player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://imagens/Rogue/Run/run1.png" type="Texture" id=3]
-[ext_resource path="res://imagens/Rogue/Run/run2.png" type="Texture" id=4]
-[ext_resource path="res://imagens/Rogue/Run/run3.png" type="Texture" id=5]
-[ext_resource path="res://imagens/Rogue/Run/run4.png" type="Texture" id=6]
-[ext_resource path="res://imagens/Rogue/Run/run5.png" type="Texture" id=7]
-[ext_resource path="res://imagens/Rogue/Run/run6.png" type="Texture" id=8]
-[ext_resource path="res://imagens/Rogue/Run/run7.png" type="Texture" id=9]
-[ext_resource path="res://imagens/Rogue/Run/run8.png" type="Texture" id=10]
+[ext_resource path="res://cenas/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://imagens/Rogue/Run/run1.png" type="Texture" id=2]
+[ext_resource path="res://imagens/Rogue/Run/run2.png" type="Texture" id=3]
+[ext_resource path="res://imagens/Rogue/Run/run3.png" type="Texture" id=4]
+[ext_resource path="res://imagens/Rogue/Run/run4.png" type="Texture" id=5]
+[ext_resource path="res://imagens/Rogue/Run/run5.png" type="Texture" id=6]
+[ext_resource path="res://imagens/Rogue/Run/run6.png" type="Texture" id=7]
+[ext_resource path="res://imagens/Rogue/Run/run7.png" type="Texture" id=8]
+[ext_resource path="res://imagens/Rogue/Run/run8.png" type="Texture" id=9]
+[ext_resource path="res://imagens/Rogue/rogue.png" type="Texture" id=10]
 [ext_resource path="res://imagens/Rogue/Jump/jump1.png" type="Texture" id=11]
 [ext_resource path="res://imagens/Rogue/Jump/jump2.png" type="Texture" id=12]
 [ext_resource path="res://imagens/Rogue/Jump/jump3.png" type="Texture" id=13]
@@ -17,14 +17,33 @@
 [ext_resource path="res://imagens/Rogue/Jump/jump5.png" type="Texture" id=15]
 [ext_resource path="res://imagens/Rogue/Jump/jump6.png" type="Texture" id=16]
 [ext_resource path="res://imagens/Rogue/Jump/jump7.png" type="Texture" id=17]
-[ext_resource path="res://imagens/Rogue/rogue.png" type="Texture" id=18]
+[ext_resource path="res://icon.png" type="Texture" id=18]
+[ext_resource path="res://cenas/camera_snap.tscn" type="PackedScene" id=19]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Run",
+"speed": 9.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "Parado",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "Pulo",
+"speed": 10.0
+} ]
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 
-[sub_resource type="TileSet" id=2]
+[sub_resource type="TileSet" id=3]
 0/name = "icon.png 0"
-0/texture = ExtResource( 1 )
+0/texture = ExtResource( 18 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 0, 0, 0, 1 )
 0/region = Rect2( 0, 0, 64, 64 )
@@ -35,45 +54,37 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 1 ),
+"shape": SubResource( 2 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
 
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "Run",
-"speed": 9.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
-"loop": true,
-"name": "Pulo",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 18 ) ],
-"loop": true,
-"name": "Parado",
-"speed": 5.0
-} ]
-
 [node name="main" type="Node"]
 
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 2 )
-format = 1
-tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 65536, 0, 0, 65551, 0, 0, 131072, 0, 0, 131087, 0, 0, 196608, 0, 0, 196610, 0, 0, 196611, 0, 0, 196614, 0, 0, 196615, 0, 0, 196618, 0, 0, 196619, 0, 0, 196623, 0, 0, 262144, 0, 0, 262159, 0, 0, 327680, 0, 0, 327695, 0, 0, 393216, 0, 0, 393219, 0, 0, 393220, 0, 0, 393223, 0, 0, 393224, 0, 0, 393227, 0, 0, 393228, 0, 0, 393231, 0, 0, 458752, 0, 0, 458767, 0, 0, 524288, 0, 0, 524303, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0 )
-
-[node name="player" parent="TileMap" instance=ExtResource( 2 )]
+[node name="player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 217.321, 530.631 )
+timerPath = NodePath("../../player/Timer")
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="TileMap/player"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="player"]
 position = Vector2( -60.6502, -65.3156 )
-frames = SubResource( 3 )
+frames = SubResource( 1 )
 animation = "Pulo"
-frame = 5
+frame = 2
 playing = true
 centered = false
 offset = Vector2( -22, -14 )
 flip_h = true
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 3 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 31, 0, 0, 32, 0, 0, 33, 0, 0, 34, 0, 0, 35, 0, 0, 36, 0, 0, 37, 0, 0, 38, 0, 0, 39, 0, 0, 40, 0, 0, 41, 0, 0, 42, 0, 0, 43, 0, 0, 44, 0, 0, 45, 0, 0, 46, 0, 0, 47, 0, 0, 65536, 0, 0, 65583, 0, 0, 131072, 0, 0, 131119, 0, 0, 196608, 0, 0, 196610, 0, 0, 196611, 0, 0, 196614, 0, 0, 196615, 0, 0, 196618, 0, 0, 196619, 0, 0, 196655, 0, 0, 262144, 0, 0, 262190, 0, 0, 262191, 0, 0, 327680, 0, 0, 327694, 0, 0, 327695, 0, 0, 327696, 0, 0, 327697, 0, 0, 327698, 0, 0, 327699, 0, 0, 327700, 0, 0, 327701, 0, 0, 327702, 0, 0, 327703, 0, 0, 327704, 0, 0, 327705, 0, 0, 327706, 0, 0, 327707, 0, 0, 327708, 0, 0, 327709, 0, 0, 327710, 0, 0, 327711, 0, 0, 327712, 0, 0, 327713, 0, 0, 327726, 0, 0, 327727, 0, 0, 393216, 0, 0, 393219, 0, 0, 393220, 0, 0, 393223, 0, 0, 393224, 0, 0, 393230, 0, 0, 393231, 0, 0, 393232, 0, 0, 393233, 0, 0, 393234, 0, 0, 393235, 0, 0, 393236, 0, 0, 393237, 0, 0, 393238, 0, 0, 393239, 0, 0, 393240, 0, 0, 393241, 0, 0, 393242, 0, 0, 393243, 0, 0, 393244, 0, 0, 393245, 0, 0, 393246, 0, 0, 393247, 0, 0, 393248, 0, 0, 393249, 0, 0, 393250, 0, 0, 393262, 0, 0, 393263, 0, 0, 458752, 0, 0, 458766, 0, 0, 458767, 0, 0, 458768, 0, 0, 458769, 0, 0, 458770, 0, 0, 458771, 0, 0, 458772, 0, 0, 458773, 0, 0, 458774, 0, 0, 458775, 0, 0, 458776, 0, 0, 458777, 0, 0, 458778, 0, 0, 458779, 0, 0, 458780, 0, 0, 458781, 0, 0, 458782, 0, 0, 458783, 0, 0, 458784, 0, 0, 458785, 0, 0, 458786, 0, 0, 458798, 0, 0, 458799, 0, 0, 524288, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524309, 0, 0, 524310, 0, 0, 524311, 0, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 524315, 0, 0, 524316, 0, 0, 524317, 0, 0, 524318, 0, 0, 524319, 0, 0, 524320, 0, 0, 524321, 0, 0, 524322, 0, 0, 524335, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0, 589840, 0, 0, 589841, 0, 0, 589842, 0, 0, 589843, 0, 0, 589844, 0, 0, 589845, 0, 0, 589846, 0, 0, 589847, 0, 0, 589848, 0, 0, 589849, 0, 0, 589850, 0, 0, 589851, 0, 0, 589852, 0, 0, 589853, 0, 0, 589854, 0, 0, 589855, 0, 0, 589856, 0, 0, 589857, 0, 0, 589858, 0, 0, 589871, 0, 0, 655391, 0, 0, 655392, 0, 0, 655393, 0, 0, 655394, 0, 0, 655407, 0, 0, 720928, 0, 0, 720929, 0, 0, 720930, 0, 0, 720942, 0, 0, 720943, 0, 0, 786464, 0, 0, 786465, 0, 0, 786466, 0, 0, 786478, 0, 0, 786479, 0, 0, 852000, 0, 0, 852001, 0, 0, 852002, 0, 0, 852013, 0, 0, 852014, 0, 0, 852015, 0, 0, 917536, 0, 0, 917537, 0, 0, 917538, 0, 0, 917539, 0, 0, 917540, 0, 0, 917541, 0, 0, 917547, 0, 0, 917548, 0, 0, 917549, 0, 0, 917550, 0, 0, 917551, 0, 0, 983072, 0, 0, 983073, 0, 0, 983074, 0, 0, 983075, 0, 0, 983076, 0, 0, 983077, 0, 0, 983078, 0, 0, 983083, 0, 0, 983084, 0, 0, 983085, 0, 0, 983086, 0, 0, 983087, 0, 0, 1048608, 0, 0, 1048609, 0, 0, 1048610, 0, 0, 1048611, 0, 0, 1048612, 0, 0, 1048613, 0, 0, 1048614, 0, 0, 1048615, 0, 0, 1048616, 0, 0, 1048617, 0, 0, 1048618, 0, 0, 1048619, 0, 0, 1048620, 0, 0, 1048621, 0, 0, 1048622, 0, 0, 1048623, 0, 0 )
+
+[node name="camera_snap" parent="." instance=ExtResource( 19 )]
+
+[node name="camera_snap2" parent="." instance=ExtResource( 19 )]
+position = Vector2( 1024, 0 )
+
+[node name="camera_snap3" parent="." instance=ExtResource( 19 )]
+position = Vector2( 2048, 0 )
+scale = Vector2( 1, 1.8114 )
