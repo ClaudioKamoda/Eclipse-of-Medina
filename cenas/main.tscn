@@ -9,14 +9,14 @@
 [ext_resource path="res://imagens/Rogue/Run/run6.png" type="Texture" id=7]
 [ext_resource path="res://imagens/Rogue/Run/run7.png" type="Texture" id=8]
 [ext_resource path="res://imagens/Rogue/Run/run8.png" type="Texture" id=9]
-[ext_resource path="res://imagens/Rogue/rogue.png" type="Texture" id=10]
-[ext_resource path="res://imagens/Rogue/Jump/jump1.png" type="Texture" id=11]
-[ext_resource path="res://imagens/Rogue/Jump/jump2.png" type="Texture" id=12]
-[ext_resource path="res://imagens/Rogue/Jump/jump3.png" type="Texture" id=13]
-[ext_resource path="res://imagens/Rogue/Jump/jump4.png" type="Texture" id=14]
-[ext_resource path="res://imagens/Rogue/Jump/jump5.png" type="Texture" id=15]
-[ext_resource path="res://imagens/Rogue/Jump/jump6.png" type="Texture" id=16]
-[ext_resource path="res://imagens/Rogue/Jump/jump7.png" type="Texture" id=17]
+[ext_resource path="res://imagens/Rogue/Jump/jump1.png" type="Texture" id=10]
+[ext_resource path="res://imagens/Rogue/Jump/jump2.png" type="Texture" id=11]
+[ext_resource path="res://imagens/Rogue/Jump/jump3.png" type="Texture" id=12]
+[ext_resource path="res://imagens/Rogue/Jump/jump4.png" type="Texture" id=13]
+[ext_resource path="res://imagens/Rogue/Jump/jump5.png" type="Texture" id=14]
+[ext_resource path="res://imagens/Rogue/Jump/jump6.png" type="Texture" id=15]
+[ext_resource path="res://imagens/Rogue/Jump/jump7.png" type="Texture" id=16]
+[ext_resource path="res://imagens/Rogue/rogue.png" type="Texture" id=17]
 [ext_resource path="res://icon.png" type="Texture" id=18]
 [ext_resource path="res://cenas/camera_snap.tscn" type="PackedScene" id=19]
 
@@ -27,15 +27,15 @@ animations = [ {
 "name": "Run",
 "speed": 9.0
 }, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "Parado",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": true,
 "name": "Pulo",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "Parado",
+"speed": 5.0
 } ]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
@@ -63,13 +63,12 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 
 [node name="player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 217.321, 530.631 )
-timerPath = NodePath("../../player/Timer")
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="player"]
 position = Vector2( -60.6502, -65.3156 )
 frames = SubResource( 1 )
 animation = "Pulo"
-frame = 2
+frame = 5
 playing = true
 centered = false
 offset = Vector2( -22, -14 )

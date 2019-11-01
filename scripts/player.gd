@@ -78,3 +78,7 @@ func tween_camera(new_position):
 	camTween.interpolate_property(cam, "limit_top", cam.limit_top, new_position.position.y, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	camTween.interpolate_property(cam, "limit_bottom", cam.limit_bottom, new_position.end.y, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	camTween.start()
+	if($AnimatedSprite.flip_h == true):
+		position.x -= 64
+	else:
+		position.x += 64
