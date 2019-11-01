@@ -1,20 +1,62 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
+[ext_resource path="res://imagens/Rogue/Run/run1.png" type="Texture" id=2]
+[ext_resource path="res://imagens/Rogue/Run/run2.png" type="Texture" id=3]
+[ext_resource path="res://imagens/Rogue/Run/run3.png" type="Texture" id=4]
+[ext_resource path="res://imagens/Rogue/Run/run4.png" type="Texture" id=5]
+[ext_resource path="res://imagens/Rogue/Run/run5.png" type="Texture" id=6]
+[ext_resource path="res://imagens/Rogue/Run/run6.png" type="Texture" id=7]
+[ext_resource path="res://imagens/Rogue/Run/run7.png" type="Texture" id=8]
+[ext_resource path="res://imagens/Rogue/Run/run8.png" type="Texture" id=9]
+[ext_resource path="res://imagens/Rogue/rogue.png" type="Texture" id=10]
+[ext_resource path="res://imagens/Rogue/Jump/jump1.png" type="Texture" id=11]
+[ext_resource path="res://imagens/Rogue/Jump/jump2.png" type="Texture" id=12]
+[ext_resource path="res://imagens/Rogue/Jump/jump3.png" type="Texture" id=13]
+[ext_resource path="res://imagens/Rogue/Jump/jump4.png" type="Texture" id=14]
+[ext_resource path="res://imagens/Rogue/Jump/jump5.png" type="Texture" id=15]
+[ext_resource path="res://imagens/Rogue/Jump/jump6.png" type="Texture" id=16]
+[ext_resource path="res://imagens/Rogue/Jump/jump7.png" type="Texture" id=17]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 31.8735, 31.8546 )
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Corrida",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "Parado",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "Pulo",
+"speed": 10.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32, 32 )
+extents = Vector2( 23.6143, 28.9889 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 24.7294, 31.975 )
 
 [node name="player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 timerPath = NodePath("timer")
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Corrida"
+frame = 1
+playing = true
+offset = Vector2( -22, -14 )
+flip_h = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -1 )
-shape = SubResource( 1 )
+position = Vector2( -3.17773, 3.36934 )
+shape = SubResource( 2 )
 
 [node name="timer" type="Timer" parent="."]
 wait_time = 0.1
@@ -25,9 +67,12 @@ current = true
 drag_margin_v_enabled = false
 
 [node name="CameraHandler" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraHandler"]
-shape = SubResource( 2 )
+visible = false
+position = Vector2( -1.16635, 0 )
+shape = SubResource( 3 )
 
 [node name="CameraTween" type="Tween" parent="CameraHandler"]
 [connection signal="timeout" from="timer" to="." method="_on_Timer_timeout"]

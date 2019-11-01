@@ -27,13 +27,13 @@ func _physics_process(delta):
 		if($AnimatedSprite.flip_h == true):
 			$AnimatedSprite.offset.x = 15
 			$AnimatedSprite.flip_h = false
-		$AnimatedSprite.play("Run")
+		$AnimatedSprite.play("Corrida")
 		
 	elif(Input.is_action_pressed("ui_left")):
 		if($AnimatedSprite.flip_h == false):
 			$AnimatedSprite.offset.x = -22
 			$AnimatedSprite.flip_h = true
-		$AnimatedSprite.play("Run")
+		$AnimatedSprite.play("Corrida")
 		
 	elif Input.is_action_pressed("ui_up"):
 		$AnimatedSprite.play("Pulo")
