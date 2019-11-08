@@ -20,6 +20,7 @@ func _ready():
 
 func _physics_process(delta):
 	if camTween.is_active():
+		#velocity = Vector2(0,0)
 		return
 	
 	# ANIMAÇÕES
