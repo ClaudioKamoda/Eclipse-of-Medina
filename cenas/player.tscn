@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://imagens/Rogue/Run/run1.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://imagens/Rogue/Jump/jump5.png" type="Texture" id=15]
 [ext_resource path="res://imagens/Rogue/Jump/jump6.png" type="Texture" id=16]
 [ext_resource path="res://imagens/Rogue/Jump/jump7.png" type="Texture" id=17]
+[ext_resource path="res://scripts/PlayerFSM.gd" type="Script" id=18]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -36,8 +37,9 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 23.6143, 28.9889 )
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 16.3631
+height = 22.9747
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 24.7294, 31.975 )
@@ -45,17 +47,20 @@ extents = Vector2( 24.7294, 31.975 )
 [node name="player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 timerPath = NodePath("timer")
+AnimatedSpritePath = NodePath("AnimatedSprite")
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "Corrida"
-frame = 1
+animation = "Parado"
 playing = true
 offset = Vector2( -22, -14 )
 flip_h = true
 
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource( 18 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -3.17773, 3.36934 )
+position = Vector2( -2.97383, 5.2045 )
 shape = SubResource( 2 )
 
 [node name="timer" type="Timer" parent="."]
@@ -63,6 +68,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, 1.46303 )
 current = true
 drag_margin_v_enabled = false
 

@@ -1,6 +1,9 @@
 extends KinematicBody2D
 
 export (NodePath) var timerPath
+export (NodePath) var AnimatedSpritePath
+
+onready var anim = get_node(AnimatedSpritePath)
 
 onready var timer = get_node(timerPath)
 var SPEED = 200
@@ -18,33 +21,16 @@ onready var camTween = $CameraHandler/CameraTween
 func _ready():
 	camHandler.connect("area_entered", self, "new_camera_snap")
 
+
 func _physics_process(delta):
 	if camTween.is_active():
-		#velocity = Vector2(0,0)
+#		#velocity = Vector2(0,0)
 		return
-	
-	# ANIMAÇÕES
-	if(Input.is_action_pressed("ui_right")):
-		if($AnimatedSprite.flip_h == true):
-			$AnimatedSprite.offset.x = 15
-			$AnimatedSprite.flip_h = false
-		$AnimatedSprite.play("Corrida")
-		
-	elif(Input.is_action_pressed("ui_left")):
-		if($AnimatedSprite.flip_h == false):
-			$AnimatedSprite.offset.x = -22
-			$AnimatedSprite.flip_h = true
-		$AnimatedSprite.play("Corrida")
-		
-	elif Input.is_action_pressed("ui_up"):
-		$AnimatedSprite.play("Pulo")
-	
-	else:
-		if(is_on_floor()):
-			$AnimatedSprite.play("Parado")
-		
+
+
 	
 	# AÇÕES
+func _apply_movement():
 	
 	movedir = -int(Input.is_action_pressed("ui_left")) + int(Input.is_action_pressed("ui_right"))
 	
@@ -53,10 +39,6 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity, Vector2(0,-1))
 	
-	if Input.is_action_just_pressed("ui_up"):
-		velocity.y = -JUMP_SPEED
-		
-		
 	if Input.is_action_just_pressed("dash"):
 		SPEED += 800
 		timer.start()
