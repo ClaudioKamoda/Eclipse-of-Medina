@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://imagens/Rogue/Run/run1.png" type="Texture" id=2]
@@ -17,7 +17,14 @@
 [ext_resource path="res://imagens/Rogue/Jump/jump5.png" type="Texture" id=15]
 [ext_resource path="res://imagens/Rogue/Jump/jump6.png" type="Texture" id=16]
 [ext_resource path="res://imagens/Rogue/Jump/jump7.png" type="Texture" id=17]
-[ext_resource path="res://scripts/PlayerFSM.gd" type="Script" id=18]
+[ext_resource path="res://imagens/Rogue/Attack/Attack1.png" type="Texture" id=18]
+[ext_resource path="res://imagens/Rogue/Attack/Attack2.png" type="Texture" id=19]
+[ext_resource path="res://imagens/Rogue/Attack/Attack3.png" type="Texture" id=20]
+[ext_resource path="res://imagens/Rogue/Attack/Attack4.png" type="Texture" id=21]
+[ext_resource path="res://imagens/Rogue/Attack/Attack5.png" type="Texture" id=22]
+[ext_resource path="res://imagens/Rogue/Attack/Attack6.png" type="Texture" id=23]
+[ext_resource path="res://imagens/Rogue/Attack/Attack7.png" type="Texture" id=24]
+[ext_resource path="res://scripts/PlayerFSM.gd" type="Script" id=25]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -35,37 +42,50 @@ animations = [ {
 "loop": true,
 "name": "Pulo",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ],
+"loop": true,
+"name": "Atacar",
+"speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 16.3631
-height = 22.9747
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 18.4022, 28.4622 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 24.7294, 31.975 )
 
 [node name="player" type="KinematicBody2D"]
 script = ExtResource( 1 )
-timerPath = NodePath("timer")
+timerPath = NodePath("timer_dash")
+timerWaitPath = NodePath("timer_wait")
+timerAttackPath = NodePath("timer_attack")
 AnimatedSpritePath = NodePath("AnimatedSprite")
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "Parado"
+animation = "Atacar"
+frame = 3
 playing = true
 offset = Vector2( -22, -14 )
 flip_h = true
 
 [node name="StateMachine" type="Node2D" parent="."]
-script = ExtResource( 18 )
+script = ExtResource( 25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -2.97383, 5.2045 )
-shape = SubResource( 2 )
+position = Vector2( -2.56601, 4.18497 )
+shape = SubResource( 4 )
 
-[node name="timer" type="Timer" parent="."]
-wait_time = 0.1
+[node name="timer_dash" type="Timer" parent="."]
+wait_time = 0.15
 one_shot = true
+
+[node name="timer_wait" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="timer_attack" type="Timer" parent="."]
+wait_time = 0.4
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, 1.46303 )
@@ -81,4 +101,7 @@ position = Vector2( -1.16635, 0 )
 shape = SubResource( 3 )
 
 [node name="CameraTween" type="Tween" parent="CameraHandler"]
-[connection signal="timeout" from="timer" to="." method="_on_Timer_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="timeout" from="timer_dash" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="timer_wait" to="." method="_on_timer_wait_timeout"]
+[connection signal="timeout" from="timer_attack" to="." method="_on_timer_attack_timeout"]

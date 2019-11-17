@@ -1,18 +1,38 @@
 extends KinematicBody2D
 
 export (NodePath) var timerPath
+export (NodePath) var timerWaitPath
+export (NodePath) var timerAttackPath
 export (NodePath) var AnimatedSpritePath
 
 onready var anim = get_node(AnimatedSpritePath)
+onready var timer_dash = get_node(timerPath)
+onready var timer_wait = get_node(timerWaitPath)
+onready var timer_attack = get_node(timerAttackPath)
 
-onready var timer = get_node(timerPath)
-var SPEED = 200
-const JUMP_SPEED = 1000
-const GRAVITY = 50
-const DASH_SPEED = 1000
+
+# Variáveis setadas externamente (são bem importantes)
+
+export (float) var SPEED = 200
+export (float) var JUMP_SPEED = 1000
+export (float) var GRAVITY = 50
+export (float) var DASH_SPEED = 1000
+export (bool) var double_jump = false
+export (bool) var dash = false
+
+
+# Variáveis auxiliares
 
 var movedir = 0
 var velocity = Vector2(0,0)
+var do_dash = false
+var wait_dash = false
+var done_double = false
+var attack = false
+var attacking = false
+
+
+#Variáveis da câmera
 
 onready var cam = $Camera2D
 onready var camHandler = $CameraHandler
@@ -21,31 +41,55 @@ onready var camTween = $CameraHandler/CameraTween
 func _ready():
 	camHandler.connect("area_entered", self, "new_camera_snap")
 
-
+    #Atualiza todo momento
 func _physics_process(delta):
 	if camTween.is_active():
-#		#velocity = Vector2(0,0)
 		return
-
+	
+	              #Em qualquer estado, faz o flip do sprite
+	if(movedir > 0):              
+		if(anim.flip_h == true):
+			anim.offset.x = 15
+			anim.flip_h = false
+	elif(movedir < 0):
+		if(anim.flip_h == false):
+			anim.offset.x = -22
+			anim.flip_h = true
 
 	
-	# AÇÕES
+	#Movimento do player
 func _apply_movement():
 	
-	movedir = -int(Input.is_action_pressed("ui_left")) + int(Input.is_action_pressed("ui_right"))
+	if do_dash == false:
+		movedir = -int(Input.is_action_pressed("move_left")) + int(Input.is_action_pressed("move_right"))
 	
 	velocity.x = movedir * SPEED
 	velocity.y += GRAVITY
 	
 	velocity = move_and_slide(velocity, Vector2(0,-1))
-	
-	if Input.is_action_just_pressed("dash"):
-		SPEED += 800
-		timer.start()
 
-func _on_Timer_timeout():
+
+    #Contadores
+func _on_Timer_timeout(): #timer_dash
 	SPEED = 200
+	do_dash = false
+	wait_dash = true
+	timer_wait.start()
+	
+func _on_timer_wait_timeout():  #tempo para dar o dash novamente
+	wait_dash = false
+	
+func _on_timer_attack_timeout():
+	if !attacking:
+		attack = false
 
+   #Ataque
+func _on_AnimatedSprite_animation_finished():
+	attack = false
+	attacking = false
+
+
+    #Câmera
 func new_camera_snap(snap):
 	if snap.is_in_group("camera_snap"):
 		var camRect = Rect2(snap.position, Vector2(1024, 600) * snap.scale)
