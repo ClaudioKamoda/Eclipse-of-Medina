@@ -9,6 +9,9 @@ onready var anim = get_node(AnimatedSpritePath)
 onready var timer_dash = get_node(timerPath)
 onready var timer_wait = get_node(timerWaitPath)
 onready var timer_attack = get_node(timerAttackPath)
+onready var SwordHit = get_node("AnimatedSprite/SwordHit/SwordHit")
+onready var Particles = get_node("AnimatedSprite/SwordHit/Particles2D")
+onready var Particles2 = get_node("AnimatedSprite/SwordHit/Particles2D2")
 
 
 # Variáveis setadas externamente (são bem importantes)
@@ -46,15 +49,21 @@ func _physics_process(delta):
 	if camTween.is_active():
 		return
 	
-	              #Em qualquer estado, faz o flip do sprite
+	              #Em qualquer estado, faz o flip do sprite, collision do ataque e partículas
 	if(movedir > 0):              
 		if(anim.flip_h == true):
 			anim.offset.x = 15
 			anim.flip_h = false
+			SwordHit.position.x = 22
+			Particles.position.x = 25.65
+			Particles2.position.x = 25.65
 	elif(movedir < 0):
 		if(anim.flip_h == false):
 			anim.offset.x = -22
 			anim.flip_h = true
+			SwordHit.position.x = -27.15
+			Particles.position.x = -30.8
+			Particles2.position.x = -30.8
 
 	
 	#Movimento do player
@@ -109,3 +118,13 @@ func tween_camera(new_position):
 		position.x -= 64
 	else:
 		position.x += 64
+
+
+func _on_SwordHit_area_entered(area):
+	if area.is_in_group("hurtbox"):
+		if(Particles.is_emitting()):
+			print("Damage2")
+			Particles2.set_emitting(true)
+		else:
+			print("Damage")
+			Particles.set_emitting(true)

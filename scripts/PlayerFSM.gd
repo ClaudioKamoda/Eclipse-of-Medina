@@ -36,6 +36,7 @@ func _input(event):
 	if [states.parado, states.run, states.jump, states.double_jump, states.attack].has(state):  #primeiro ataque
 		if event.is_action_pressed("attack"):
 			parent.attack = true
+			parent.SwordHit.set_disabled(false)
 			
 	if [states.attack].has(state):    #verifica a continuação do ataque
 		if event.is_action_pressed("attack") && parent.timer_attack.time_left > 0:  # se apertou pra atacar e o tempo do primeiro ataque nao passou, dá o segundo ataque
@@ -84,8 +85,10 @@ func _get_transition(delta):
 
 		states.attack:
 			if parent.attack == false:  #se não estiver atacando muda para parado
+				parent.SwordHit.set_disabled(true)
 				return states.parado
 			if(!parent.attacking):  # se não estiver no segundo ataque
+				parent.SwordHit.set_disabled(true)
 				if parent.anim.frame > 2:  #verifica em qual frame está, mais do que 2 pausa o ataque
 					parent.anim.playing = false  #pausa a animação
 			

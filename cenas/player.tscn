@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://imagens/Rogue/Run/run1.png" type="Texture" id=2]
@@ -49,10 +49,35 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 18.4022, 28.4622 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 16.9366 )
+
+[sub_resource type="Gradient" id=8]
+colors = PoolColorArray( 0.745098, 0.745098, 0.745098, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+angular_velocity = 10.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 19.28
+radial_accel = 43.37
+angle = 360.0
+scale = 2.0
+scale_random = 0.34
+color_ramp = SubResource( 9 )
 
 [sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 18.4022, 28.4622 )
+
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 24.7294, 31.975 )
 
 [node name="player" type="KinematicBody2D"]
@@ -65,17 +90,40 @@ AnimatedSpritePath = NodePath("AnimatedSprite")
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "Atacar"
-frame = 3
+frame = 4
 playing = true
 offset = Vector2( -22, -14 )
 flip_h = true
+
+[node name="SwordHit" type="Area2D" parent="AnimatedSprite"]
+
+[node name="SwordHit" type="CollisionShape2D" parent="AnimatedSprite/SwordHit"]
+position = Vector2( -27.15, 5.098 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="Particles2D" type="Particles2D" parent="AnimatedSprite/SwordHit"]
+position = Vector2( -30.8328, 4.28205 )
+emitting = false
+lifetime = 0.4
+one_shot = true
+speed_scale = 0.7
+process_material = SubResource( 7 )
+
+[node name="Particles2D2" type="Particles2D" parent="AnimatedSprite/SwordHit"]
+position = Vector2( -30.8328, 4.28205 )
+emitting = false
+lifetime = 0.4
+one_shot = true
+speed_scale = 0.7
+process_material = SubResource( 7 )
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource( 25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -2.56601, 4.18497 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="timer_dash" type="Timer" parent="."]
 wait_time = 0.15
@@ -98,10 +146,11 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraHandler"]
 visible = false
 position = Vector2( -1.16635, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="CameraTween" type="Tween" parent="CameraHandler"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="area_entered" from="AnimatedSprite/SwordHit" to="." method="_on_SwordHit_area_entered"]
 [connection signal="timeout" from="timer_dash" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="timer_wait" to="." method="_on_timer_wait_timeout"]
 [connection signal="timeout" from="timer_attack" to="." method="_on_timer_attack_timeout"]
