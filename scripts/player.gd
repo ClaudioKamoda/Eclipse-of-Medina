@@ -37,19 +37,13 @@ var attacking = false
 
 #Variáveis da câmera
 
-onready var cam = $Camera2D
-onready var camHandler = $CameraHandler
-onready var camTween = $CameraHandler/CameraTween
-
 func _ready():
-	camHandler.connect("area_entered", self, "new_camera_snap")
+	pass
 
     #Atualiza todo momento
 func _physics_process(delta):
-	if camTween.is_active():
-		return
 	
-	              #Em qualquer estado, faz o flip do sprite, collision do ataque e partículas
+	#Em qualquer estado, faz o flip do sprite, collision do ataque e partículas
 	if(movedir > 0):              
 		if(anim.flip_h == true):
 			anim.offset.x = 15
@@ -97,29 +91,6 @@ func _on_AnimatedSprite_animation_finished():
 	attack = false
 	attacking = false
 
-
-    #Câmera
-func new_camera_snap(snap):
-	if snap.is_in_group("camera_snap"):
-		var camRect = Rect2(snap.position, Vector2(1024, 600) * snap.scale)
-		#cam.limit_left = snap.position.x
-		#cam.limit_right = snap.position.x + 1024 * snap.scale.x
-		#cam.limit_top = snap.position.y
-		#cam.limit_bottom = snap.position.y + 600 * snap.scale.y
-		tween_camera(camRect)
-
-func tween_camera(new_position):
-	camTween.interpolate_property(cam, "limit_left", cam.limit_left, new_position.position.x, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	camTween.interpolate_property(cam, "limit_right", cam.limit_right, new_position.end.x, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	camTween.interpolate_property(cam, "limit_top", cam.limit_top, new_position.position.y, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	camTween.interpolate_property(cam, "limit_bottom", cam.limit_bottom, new_position.end.y, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	camTween.start()
-	if($AnimatedSprite.flip_h == true):
-		position.x -= 64
-	else:
-		position.x += 64
-
-
 func _on_SwordHit_area_entered(area):
 	if area.is_in_group("hurtbox"):
 		if(Particles.is_emitting()):
@@ -128,3 +99,14 @@ func _on_SwordHit_area_entered(area):
 		else:
 			print("Damage")
 			Particles.set_emitting(true)
+		
+	
+
+func save():
+	var save_dict = {
+		pos = {
+			x = get_pos().x,
+			y = get_pos().y
+		}
+	}
+	return save_dict
