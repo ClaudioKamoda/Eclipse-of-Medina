@@ -105,8 +105,10 @@ func _on_SwordHit_area_entered(area):
 func save():
 	var save_dict = {
 		pos = {
-			x = get_pos().x,
-			y = get_pos().y
-		}
+			x = get_position().x,
+			y = get_position().y
+		},
+		dash = dash,
+		double_jump = double_jump
 	}
 	return save_dict
