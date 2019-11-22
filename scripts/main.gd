@@ -1,7 +1,8 @@
 extends Node
 
 func _ready():
-	pass # Replace with function body.
-
-func _on_Button_button_down():
-	Save.save_game()
+	pass
+	
+#func verifica(event):
+#	if event.is_action_pressed("save"):
+#		Save.save_game()

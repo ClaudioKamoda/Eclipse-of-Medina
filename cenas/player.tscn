@@ -1,14 +1,14 @@
 [gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
-[ext_resource path="res://imagens/Rogue/Run/run1.png" type="Texture" id=2]
-[ext_resource path="res://imagens/Rogue/Run/run2.png" type="Texture" id=3]
-[ext_resource path="res://imagens/Rogue/Run/run3.png" type="Texture" id=4]
-[ext_resource path="res://imagens/Rogue/Run/run4.png" type="Texture" id=5]
-[ext_resource path="res://imagens/Rogue/Run/run5.png" type="Texture" id=6]
-[ext_resource path="res://imagens/Rogue/Run/run6.png" type="Texture" id=7]
-[ext_resource path="res://imagens/Rogue/Run/run7.png" type="Texture" id=8]
-[ext_resource path="res://imagens/Rogue/Run/run8.png" type="Texture" id=9]
+[ext_resource path="res://imagens/Rogue/rogue.png" type="Texture" id=2]
+[ext_resource path="res://imagens/Rogue/Attack/Attack1.png" type="Texture" id=3]
+[ext_resource path="res://imagens/Rogue/Attack/Attack2.png" type="Texture" id=4]
+[ext_resource path="res://imagens/Rogue/Attack/Attack3.png" type="Texture" id=5]
+[ext_resource path="res://imagens/Rogue/Attack/Attack4.png" type="Texture" id=6]
+[ext_resource path="res://imagens/Rogue/Attack/Attack5.png" type="Texture" id=7]
+[ext_resource path="res://imagens/Rogue/Attack/Attack6.png" type="Texture" id=8]
+[ext_resource path="res://imagens/Rogue/Attack/Attack7.png" type="Texture" id=9]
 [ext_resource path="res://imagens/Rogue/Jump/jump1.png" type="Texture" id=10]
 [ext_resource path="res://imagens/Rogue/Jump/jump2.png" type="Texture" id=11]
 [ext_resource path="res://imagens/Rogue/Jump/jump3.png" type="Texture" id=12]
@@ -16,36 +16,36 @@
 [ext_resource path="res://imagens/Rogue/Jump/jump5.png" type="Texture" id=14]
 [ext_resource path="res://imagens/Rogue/Jump/jump6.png" type="Texture" id=15]
 [ext_resource path="res://imagens/Rogue/Jump/jump7.png" type="Texture" id=16]
-[ext_resource path="res://imagens/Rogue/Attack/Attack1.png" type="Texture" id=17]
-[ext_resource path="res://imagens/Rogue/Attack/Attack2.png" type="Texture" id=18]
-[ext_resource path="res://imagens/Rogue/Attack/Attack3.png" type="Texture" id=19]
-[ext_resource path="res://imagens/Rogue/Attack/Attack4.png" type="Texture" id=20]
-[ext_resource path="res://imagens/Rogue/Attack/Attack5.png" type="Texture" id=21]
-[ext_resource path="res://imagens/Rogue/Attack/Attack6.png" type="Texture" id=22]
-[ext_resource path="res://imagens/Rogue/Attack/Attack7.png" type="Texture" id=23]
-[ext_resource path="res://imagens/Rogue/rogue.png" type="Texture" id=24]
+[ext_resource path="res://imagens/Rogue/Run/run1.png" type="Texture" id=17]
+[ext_resource path="res://imagens/Rogue/Run/run2.png" type="Texture" id=18]
+[ext_resource path="res://imagens/Rogue/Run/run3.png" type="Texture" id=19]
+[ext_resource path="res://imagens/Rogue/Run/run4.png" type="Texture" id=20]
+[ext_resource path="res://imagens/Rogue/Run/run5.png" type="Texture" id=21]
+[ext_resource path="res://imagens/Rogue/Run/run6.png" type="Texture" id=22]
+[ext_resource path="res://imagens/Rogue/Run/run7.png" type="Texture" id=23]
+[ext_resource path="res://imagens/Rogue/Run/run8.png" type="Texture" id=24]
 [ext_resource path="res://scripts/PlayerFSM.gd" type="Script" id=25]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "Corrida",
+"name": "Parado",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Atacar",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": true,
 "name": "Pulo",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ) ],
+"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ],
 "loop": true,
-"name": "Atacar",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "Parado",
+"name": "Corrida",
 "speed": 5.0
 } ]
 
@@ -89,7 +89,7 @@ AnimatedSpritePath = NodePath("AnimatedSprite")
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "Atacar"
-frame = 2
+frame = 1
 playing = true
 offset = Vector2( -22, -14 )
 flip_h = true
