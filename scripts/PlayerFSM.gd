@@ -11,15 +11,17 @@ func _ready():
 	call_deferred("set_state", states.parado)
 
 func _input(event):
-	if [states.parado, states.run, states.attack].has(state):    #pulo simples
-		if event.is_action_pressed("jump") && pilha.size() == 0:
-			parent.velocity.y = -parent.JUMP_SPEED    #joga pra cima
-			add_pilha("jump") #adiciona o pulo na pilha
-			
 	if [states.jump, states.attack, states.fall].has(state):   #pulo duplo
 		if event.is_action_pressed("jump") && pilha.size() == 1 && parent.double_jump:
+			print("double jump")
 			parent.velocity.y = -parent.JUMP_SPEED    #joga pra cima
 			add_pilha("double_jump")
+			
+	if [states.parado, states.run, states.attack, states.fall].has(state):    #pulo simples
+		if event.is_action_pressed("jump") && pilha.size() == 0:
+			print("jump")
+			parent.velocity.y = -parent.JUMP_SPEED    #joga pra cima
+			add_pilha("jump") #adiciona o pulo na pilha
 			
 	if [states.parado, states.run, states.jump, states.double_jump, states.fall, states.attack].has(state):  #quando aperta o dash entra no estado de run e aumenta o speed
 		if event.is_action_pressed("dash") && parent.dash && parent.wait_dash == false:
@@ -45,7 +47,7 @@ func _state_logic(delta):
 	parent._apply_movement()
 
 func _get_transition(delta):
-	print(state)
+	#print(pilha)
 	match state:
 
 		states.parado:
@@ -90,9 +92,12 @@ func _get_transition(delta):
 		states.fall:
 			if parent.is_on_floor():  #se cair no chão acaba o fall
 				return states.parado
-			elif parent.double_jump:  #se o double_jump estiver ativado
-				if pilha.size() == 2 && parent.velocity.y < 0:
-					return states.double_jump
+			elif parent.velocity.y < 0:  #ta subindo?
+				if pilha.size() == 1:
+					return states.jump
+				elif parent.double_jump:  #se o double_jump estiver ativado
+					if pilha.size() == 2:
+						return states.double_jump
 			if parent.attack:
 				return states.attack
 
@@ -113,7 +118,7 @@ func _get_transition(delta):
 	return null
 
 func _enter_state(new_state, old_state):
-	#print(new_state)
+	print(pilha, "  ", new_state)
 	match new_state:
 		states.parado:
 			parent.anim.play("Parado")
