@@ -17,8 +17,8 @@ onready var Particles2 = get_node("AnimatedSprite/SwordHit/Particles2D2")
 # Variáveis setadas externamente (são bem importantes)
 
 export (float) var SPEED = 200
-export (float) var JUMP_SPEED = 1000
-export (float) var GRAVITY = 50
+export (float) var JUMP_SPEED = 730
+export (float) var GRAVITY = 30
 export (float) var DASH_SPEED = 1000
 export (bool) var double_jump = false
 export (bool) var dash = false
@@ -30,7 +30,6 @@ var movedir = 0
 var velocity = Vector2(0,0)
 var do_dash = false
 var wait_dash = false
-var done_double = false
 var attack = false
 var attacking = false
 

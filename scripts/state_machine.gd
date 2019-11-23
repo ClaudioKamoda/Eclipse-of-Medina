@@ -4,6 +4,7 @@ class_name StateMachine
 var state = null
 var previous_state = null
 var states = {}
+var pilha = []
 
 onready var parent = get_parent()
 
@@ -37,4 +38,12 @@ func set_state(new_state):
 
 
 func add_state(state_name):
-	states[state_name] = states.size()
+	states[state_name] = state_name
+	
+func add_pilha(value):
+	pilha.append(value)
+	
+func remove_pilha():
+	if(pilha.size() > 0):
+		print("removing...", pilha.size(), "estado: ", state)
+	pilha.remove(pilha.size() - 1)
