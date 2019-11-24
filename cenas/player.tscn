@@ -89,7 +89,7 @@ orbit_velocity_random = 0.0
 linear_accel = 19.28
 radial_accel = 43.37
 angle = 360.0
-scale = 2.0
+scale = 4.0
 scale_random = 0.34
 color_ramp = SubResource( 4 )
 
@@ -98,6 +98,7 @@ extents = Vector2( 18.4022, 28.4622 )
 
 [node name="player" type="KinematicBody2D" groups=[
 "persistent",
+"player",
 ]]
 script = ExtResource( 1 )
 timerPath = NodePath("timer_dash")
@@ -106,9 +107,10 @@ timerAttackPath = NodePath("timer_attack")
 AnimatedSpritePath = NodePath("AnimatedSprite")
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 3, 0 )
 frames = SubResource( 1 )
-animation = "Pulo Duplo"
-frame = 4
+animation = "Atacar"
+frame = 6
 playing = true
 offset = Vector2( -22, -14 )
 flip_h = true
@@ -143,7 +145,7 @@ process_material = SubResource( 5 )
 script = ExtResource( 34 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -2.56601, 4.18497 )
+position = Vector2( 0, 4.185 )
 shape = SubResource( 6 )
 __meta__ = {
 "_edit_lock_": true
@@ -155,9 +157,11 @@ one_shot = true
 
 [node name="timer_wait" type="Timer" parent="."]
 wait_time = 0.5
+one_shot = true
 
 [node name="timer_attack" type="Timer" parent="."]
 wait_time = 0.4
+one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 rotation = -3.14159
@@ -170,6 +174,7 @@ drag_margin_bottom = 0.1
 editor_draw_drag_margin = true
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="area_entered" from="AnimatedSprite/SwordHit" to="." method="_on_SwordHit_area_entered"]
+[connection signal="body_entered" from="AnimatedSprite/SwordHit" to="." method="_on_SwordHit_body_entered"]
 [connection signal="timeout" from="timer_dash" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="timer_wait" to="." method="_on_timer_wait_timeout"]
 [connection signal="timeout" from="timer_attack" to="." method="_on_timer_attack_timeout"]

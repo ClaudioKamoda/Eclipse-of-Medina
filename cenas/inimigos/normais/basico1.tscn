@@ -1,0 +1,192 @@
+[gd_scene load_steps=100 format=2]
+
+[ext_resource path="res://scripts/inimigos/basicos/basico1.gd" type="Script" id=1]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_000.png" type="Texture" id=2]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_001.png" type="Texture" id=3]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_002.png" type="Texture" id=4]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_003.png" type="Texture" id=5]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_004.png" type="Texture" id=6]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_005.png" type="Texture" id=7]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_006.png" type="Texture" id=8]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_007.png" type="Texture" id=9]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_008.png" type="Texture" id=10]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_009.png" type="Texture" id=11]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_010.png" type="Texture" id=12]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_011.png" type="Texture" id=13]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_012.png" type="Texture" id=14]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_013.png" type="Texture" id=15]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_014.png" type="Texture" id=16]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_015.png" type="Texture" id=17]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_016.png" type="Texture" id=18]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Idle/0_Fallen_Angels_Idle_017.png" type="Texture" id=19]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Running/0_Fallen_Angels_Running_000.png" type="Texture" id=20]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Running/0_Fallen_Angels_Running_001.png" type="Texture" id=21]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Running/0_Fallen_Angels_Running_002.png" type="Texture" id=22]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Running/0_Fallen_Angels_Running_003.png" type="Texture" id=23]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Running/0_Fallen_Angels_Running_004.png" type="Texture" id=24]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Running/0_Fallen_Angels_Running_005.png" type="Texture" id=25]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Running/0_Fallen_Angels_Running_006.png" type="Texture" id=26]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Running/0_Fallen_Angels_Running_007.png" type="Texture" id=27]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Running/0_Fallen_Angels_Running_008.png" type="Texture" id=28]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Running/0_Fallen_Angels_Running_009.png" type="Texture" id=29]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Running/0_Fallen_Angels_Running_010.png" type="Texture" id=30]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Running/0_Fallen_Angels_Running_011.png" type="Texture" id=31]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Hurt/0_Fallen_Angels_Hurt_000.png" type="Texture" id=32]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Hurt/0_Fallen_Angels_Hurt_001.png" type="Texture" id=33]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Hurt/0_Fallen_Angels_Hurt_002.png" type="Texture" id=34]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Hurt/0_Fallen_Angels_Hurt_003.png" type="Texture" id=35]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Hurt/0_Fallen_Angels_Hurt_004.png" type="Texture" id=36]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Hurt/0_Fallen_Angels_Hurt_005.png" type="Texture" id=37]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Hurt/0_Fallen_Angels_Hurt_006.png" type="Texture" id=38]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Hurt/0_Fallen_Angels_Hurt_007.png" type="Texture" id=39]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Hurt/0_Fallen_Angels_Hurt_008.png" type="Texture" id=40]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Hurt/0_Fallen_Angels_Hurt_009.png" type="Texture" id=41]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Hurt/0_Fallen_Angels_Hurt_010.png" type="Texture" id=42]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Hurt/0_Fallen_Angels_Hurt_011.png" type="Texture" id=43]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Slashing/0_Fallen_Angels_Slashing_000.png" type="Texture" id=44]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Slashing/0_Fallen_Angels_Slashing_001.png" type="Texture" id=45]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Slashing/0_Fallen_Angels_Slashing_002.png" type="Texture" id=46]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Slashing/0_Fallen_Angels_Slashing_003.png" type="Texture" id=47]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Slashing/0_Fallen_Angels_Slashing_004.png" type="Texture" id=48]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Slashing/0_Fallen_Angels_Slashing_005.png" type="Texture" id=49]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Slashing/0_Fallen_Angels_Slashing_006.png" type="Texture" id=50]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Slashing/0_Fallen_Angels_Slashing_007.png" type="Texture" id=51]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Slashing/0_Fallen_Angels_Slashing_008.png" type="Texture" id=52]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Slashing/0_Fallen_Angels_Slashing_009.png" type="Texture" id=53]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Slashing/0_Fallen_Angels_Slashing_010.png" type="Texture" id=54]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Slashing/0_Fallen_Angels_Slashing_011.png" type="Texture" id=55]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_000.png" type="Texture" id=56]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_001.png" type="Texture" id=57]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_002.png" type="Texture" id=58]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_003.png" type="Texture" id=59]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_004.png" type="Texture" id=60]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_005.png" type="Texture" id=61]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_006.png" type="Texture" id=62]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_007.png" type="Texture" id=63]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_008.png" type="Texture" id=64]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_009.png" type="Texture" id=65]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_010.png" type="Texture" id=66]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_011.png" type="Texture" id=67]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_012.png" type="Texture" id=68]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_013.png" type="Texture" id=69]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_014.png" type="Texture" id=70]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_015.png" type="Texture" id=71]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_016.png" type="Texture" id=72]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_017.png" type="Texture" id=73]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_018.png" type="Texture" id=74]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_019.png" type="Texture" id=75]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_020.png" type="Texture" id=76]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_021.png" type="Texture" id=77]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_022.png" type="Texture" id=78]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Walking/0_Fallen_Angels_Walking_023.png" type="Texture" id=79]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Dying/0_Fallen_Angels_Dying_000.png" type="Texture" id=80]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Dying/0_Fallen_Angels_Dying_001.png" type="Texture" id=81]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Dying/0_Fallen_Angels_Dying_002.png" type="Texture" id=82]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Dying/0_Fallen_Angels_Dying_003.png" type="Texture" id=83]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Dying/0_Fallen_Angels_Dying_004.png" type="Texture" id=84]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Dying/0_Fallen_Angels_Dying_005.png" type="Texture" id=85]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Dying/0_Fallen_Angels_Dying_006.png" type="Texture" id=86]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Dying/0_Fallen_Angels_Dying_007.png" type="Texture" id=87]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Dying/0_Fallen_Angels_Dying_008.png" type="Texture" id=88]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Dying/0_Fallen_Angels_Dying_009.png" type="Texture" id=89]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Dying/0_Fallen_Angels_Dying_010.png" type="Texture" id=90]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Dying/0_Fallen_Angels_Dying_011.png" type="Texture" id=91]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Dying/0_Fallen_Angels_Dying_012.png" type="Texture" id=92]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Dying/0_Fallen_Angels_Dying_013.png" type="Texture" id=93]
+[ext_resource path="res://imagens/Inimigos/Basico 1/Dying/0_Fallen_Angels_Dying_014.png" type="Texture" id=94]
+[ext_resource path="res://scripts/inimigos/basicos/FSMBasico1.gd" type="Script" id=95]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ) ],
+"loop": true,
+"name": "Run",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ) ],
+"loop": true,
+"name": "Hurt",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 44 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 53 ), ExtResource( 54 ), ExtResource( 55 ) ],
+"loop": false,
+"name": "Attack",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 56 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 59 ), ExtResource( 60 ), ExtResource( 61 ), ExtResource( 62 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 65 ), ExtResource( 66 ), ExtResource( 67 ), ExtResource( 68 ), ExtResource( 69 ), ExtResource( 70 ), ExtResource( 71 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 76 ), ExtResource( 77 ), ExtResource( 78 ), ExtResource( 79 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 80 ), ExtResource( 81 ), ExtResource( 82 ), ExtResource( 83 ), ExtResource( 84 ), ExtResource( 85 ), ExtResource( 86 ), ExtResource( 87 ), ExtResource( 88 ), ExtResource( 89 ), ExtResource( 90 ), ExtResource( 91 ), ExtResource( 92 ), ExtResource( 93 ), ExtResource( 94 ) ],
+"loop": true,
+"name": "Die",
+"speed": 8.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 145.478, 186.251 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 186.592, 271.751 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 3391.13, 844.329 )
+
+[node name="Basico1" type="KinematicBody2D" groups=[
+"enemy",
+]]
+scale = Vector2( 0.1, 0.1 )
+script = ExtResource( 1 )
+AnimatedSpritePath = NodePath("AnimatedSprite")
+TurnPath = NodePath("Turn")
+AttackPath = NodePath("Attack")
+SleepPath = NodePath("Sleep")
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Attack"
+frame = 11
+playing = true
+
+[node name="SwordHit" type="Area2D" parent="AnimatedSprite"]
+
+[node name="Sword" type="CollisionShape2D" parent="AnimatedSprite/SwordHit"]
+position = Vector2( 275.25, 56.2498 )
+shape = SubResource( 3 )
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -13.5, 27 )
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource( 95 )
+
+[node name="Detecta" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detecta"]
+position = Vector2( 0, -540.897 )
+shape = SubResource( 4 )
+
+[node name="Turn" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="Attack" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Sleep" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="body_entered" from="AnimatedSprite/SwordHit" to="." method="_on_SwordHit_body_entered"]
+[connection signal="body_entered" from="Detecta" to="." method="_on_Detecta_body_entered"]
+[connection signal="body_exited" from="Detecta" to="." method="_on_Detecta_body_exited"]

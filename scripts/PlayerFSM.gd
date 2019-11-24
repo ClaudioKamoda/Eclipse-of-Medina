@@ -13,13 +13,11 @@ func _ready():
 func _input(event):
 	if [states.jump, states.attack, states.fall].has(state):   #pulo duplo
 		if event.is_action_pressed("jump") && pilha.size() == 1 && parent.double_jump:
-			print("double jump")
 			parent.velocity.y = -parent.JUMP_SPEED    #joga pra cima
 			add_pilha("double_jump")
 			
 	if [states.parado, states.run, states.attack, states.fall].has(state):    #pulo simples
 		if event.is_action_pressed("jump") && pilha.size() == 0:
-			print("jump")
 			parent.velocity.y = -parent.JUMP_SPEED    #joga pra cima
 			add_pilha("jump") #adiciona o pulo na pilha
 			
@@ -40,6 +38,7 @@ func _input(event):
 			
 	if [states.attack].has(state):    #verifica a continuação do ataque
 		if event.is_action_pressed("attack") && parent.timer_attack.time_left > 0:  # se apertou pra atacar e o tempo do primeiro ataque nao passou, dá o segundo ataque
+			parent.SwordHit.set_disabled(false)
 			parent.attacking = true
 			parent.anim.playing = true  #coloca a animação pra continuar
 
@@ -102,7 +101,7 @@ func _get_transition(delta):
 				return states.attack
 
 		states.attack:
-			if parent.attack == false:  #se não estiver atacando muda para parado
+			if parent.attack == false:  #se não estiver atacando muda de estado
 				parent.SwordHit.set_disabled(true)
 				if !parent.is_on_floor():
 					return states.fall
@@ -118,7 +117,7 @@ func _get_transition(delta):
 	return null
 
 func _enter_state(new_state, old_state):
-	print(pilha, "  ", new_state)
+	#print(new_state)
 	match new_state:
 		states.parado:
 			parent.anim.play("Parado")

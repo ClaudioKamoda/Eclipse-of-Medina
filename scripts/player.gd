@@ -34,7 +34,6 @@ var attack = false
 var attacking = false
 
 
-#Variáveis da câmera
 
 func _ready():
 	pass
@@ -98,8 +97,15 @@ func _on_SwordHit_area_entered(area):
 		else:
 			print("Damage")
 			Particles.set_emitting(true)
-		
-	
+
+func _on_SwordHit_body_entered(body):
+	if body.is_in_group("enemy"):
+		if(Particles.is_emitting()):
+			print("Damage2")
+			Particles2.set_emitting(true)
+		else:
+			print("Damage")
+			Particles.set_emitting(true)
 
 func save():
 	var save_dict = {
@@ -111,3 +117,5 @@ func save():
 		double_jump = double_jump
 	}
 	return save_dict
+
+
