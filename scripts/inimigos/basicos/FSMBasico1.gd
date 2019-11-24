@@ -27,26 +27,28 @@ func _get_transition(delta):
 		states.vigia:
 			if parent.touro:
 				return states.touro
+			if(parent.alvo != PhysicsBody2D):
+				if parent.distance < 1200:
+					if parent.distance >= 1000:
+						parent.set_position(Vector2(parent.pos_x, parent.pos_y))
+						parent.movedir = 1
+						return states.vigia
 
 		states.touro:
 			if parent.touro == false:
 				return states.idle
-			elif (parent.alvo.global_position - parent.global_position).length() <= 60:
+			elif parent.distance <= 60:
 				return states.attack
 
 		states.idle:
 			if parent.touro:
 				return states.touro
-			if (parent.alvo.global_position - parent.global_position).length() >= 1000:
-				parent.set_position(Vector2(parent.pos_x, parent.pos_y))
-				parent.movedir = 1
-				return states.vigia
-			if (parent.alvo.global_position - parent.global_position).length() >= 500:
+			elif parent.distance >= 500:
 				parent.movedir = 1
 				return states.vigia
 
 		states.attack:
-			if (parent.alvo.global_position - parent.global_position).length() > 60:
+			if parent.distance > 60:
 				parent.SwordHit.set_disabled(true)
 				parent._sleep_time()
 				

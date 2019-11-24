@@ -33,12 +33,15 @@ var direction = Vector2()
 var animationF = false
 var sleepTime = false
 var auxSleep = false
+var distance = 0
 
 func _ready():
 	pass
 
     #Atualiza todo momento
 func _physics_process(delta):
+	if(alvo != PhysicsBody2D):
+		distance = (alvo.global_position - global_position).length()
 	
 	#Em qualquer estado, faz o flip do sprite, collision do ataque e partículas
 	if(movedir > 0):              
