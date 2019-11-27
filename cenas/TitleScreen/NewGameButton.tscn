@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://cenas/TitleScreen/MenuButton.tscn" type="PackedScene" id=1]
+
+[node name="NewGameButton" instance=ExtResource( 1 )]
+margin_right = 0.0
+margin_bottom = 0.0
+scene_to_load = "res://cenas/main.tscn"
+
+[node name="Label" parent="." index="0"]
+text = "NOVO JOGO"
