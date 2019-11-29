@@ -8,6 +8,9 @@ func _ready():
 	add_state("attack")
 	add_state("double_jump")
 	add_state("fall")
+	add_state("hurt")
+	add_state("death")
+	add_state("wall_jump")
 	call_deferred("set_state", states.parado)
 
 func _input(event):
@@ -43,7 +46,8 @@ func _input(event):
 			parent.anim.playing = true  #coloca a animação pra continuar
 
 func _state_logic(delta):
-	parent._apply_movement()
+	if state != states.death:
+		parent._apply_movement()
 
 func _get_transition(delta):
 	#print(pilha)
@@ -61,6 +65,9 @@ func _get_transition(delta):
 				return states.run
 			if parent.attack:  # se apertar para atacar muda para attack
 				return states.attack
+			if parent.hurt:
+				add_pilha("parado")
+				return states.hurt
 
 		states.run:
 			if !parent.is_on_floor():
@@ -72,6 +79,9 @@ func _get_transition(delta):
 				return states.parado
 			if parent.attack:
 				return states.attack
+			if parent.hurt:
+				add_pilha("run")
+				return states.hurt
 
 		states.jump:
 			if parent.velocity.y > 0:  #se começar a cair muda para o estado fall
@@ -81,12 +91,18 @@ func _get_transition(delta):
 					return states.double_jump
 			if parent.attack:
 				return states.attack
+			if parent.hurt:
+				add_pilha("jump")
+				return states.hurt
 
 		states.double_jump:
 			if parent.velocity.y > 0:  #se começar a cair muda para o estado fall
 				return states.fall
 			if parent.attack:
 				return states.attack
+			if parent.hurt:
+				add_pilha("double_jump")
+				return states.hurt
 				
 		states.fall:
 			if parent.is_on_floor():  #se cair no chão acaba o fall
@@ -99,6 +115,9 @@ func _get_transition(delta):
 						return states.double_jump
 			if parent.attack:
 				return states.attack
+			if parent.hurt:
+				add_pilha("fall")
+				return states.hurt
 
 		states.attack:
 			if parent.attack == false:  #se não estiver atacando muda de estado
@@ -113,6 +132,22 @@ func _get_transition(delta):
 				parent.SwordHit.set_disabled(true)
 				if parent.anim.frame > 2:  #verifica em qual frame está, mais do que 2 pausa o ataque
 					parent.anim.playing = false  #pausa a animação
+			if parent.hurt:
+				add_pilha("attack")
+				return states.hurt
+
+		states.hurt:
+			if !(parent.hurt):
+				print(pilha[pilha.size() - 1])
+				var aux = pilha[pilha.size() - 1]
+				remove_pilha()
+				return states[aux]
+			if parent.death:
+				return states.death
+
+		states.death:
+			pass
+			
 
 	return null
 
@@ -143,6 +178,12 @@ func _enter_state(new_state, old_state):
 		states.attack:
 			parent.timer_attack.start()  #tempo para apertar novamente o ataque e continuar o combo
 			parent.anim.play("Atacar")
+			
+		states.hurt:
+			parent.anim.play("Hurt")
+
+		states.death:
+			parent.anim.play("Death")
 
 func _exit_state(old_state, new_state):
 	pass

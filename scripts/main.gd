@@ -1,8 +1,9 @@
 extends Node
 
+onready var health_bar = $player/HealthBar
+onready var player = $player
+
+
 func _ready():
-	pass
+	 player.connect("health_updated", health_bar, "_on_health_updated")
 	
-#func verifica(event):
-#	if event.is_action_pressed("save"):
-#		Save.save_game()
