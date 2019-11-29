@@ -195,5 +195,8 @@ margin_right = -438.916
 margin_bottom = -237.168
 rect_scale = Vector2( 0.8, 0.8 )
 
-[node name="Pause" parent="." instance=ExtResource( 9 )]
-visible = false
+[node name="Pause" parent="player" instance=ExtResource( 9 )]
+margin_left = -506.045
+margin_top = -543.297
+margin_right = -506.045
+margin_bottom = -543.297

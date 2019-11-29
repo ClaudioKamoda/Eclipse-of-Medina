@@ -6,6 +6,9 @@ func _ready():
 	add_state("vigia")
 	add_state("idle")
 	add_state("touro")
+	add_state("sleep")
+	add_state("hurt")
+	add_state("death")
 	call_deferred("set_state", states.vigia)
 
 func _input(event):

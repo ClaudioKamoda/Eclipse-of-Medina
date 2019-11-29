@@ -13,6 +13,9 @@ onready var Particles2 = get_node("AnimatedSprite/SwordHit/Particles2D2")
 onready var invulnerability_timer = $invulnerability
 onready var health_bar = $HealthBar
 onready var game_over = $GameOver
+onready var black_overlay = $BlackOverlay
+onready var pause = $Pause
+
 
 # Variáveis setadas externamente (são bem importantes)
 
