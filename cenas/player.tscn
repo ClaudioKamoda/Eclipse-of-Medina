@@ -136,7 +136,6 @@ script = ExtResource( 1 )
 position = Vector2( 3, 0 )
 frames = SubResource( 1 )
 animation = "Corrida"
-frame = 5
 playing = true
 offset = Vector2( -22, -14 )
 flip_h = true
