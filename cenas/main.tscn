@@ -1,12 +1,13 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://imagens/Tileset/Tiles_64x64.png" type="Texture" id=2]
 [ext_resource path="res://imagens/Tileset/poste.png" type="Texture" id=3]
 [ext_resource path="res://cenas/SavePoint.tscn" type="PackedScene" id=4]
-[ext_resource path="res://cenas/inimigos/normais/basico1.tscn" type="PackedScene" id=5]
-[ext_resource path="res://cenas/player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://cenas/Pause.tscn" type="PackedScene" id=7]
+[ext_resource path="res://cenas/EntraTemplo.tscn" type="PackedScene" id=5]
+[ext_resource path="res://cenas/inimigos/normais/basico1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://cenas/player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://cenas/Pause.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -180,13 +181,22 @@ position = Vector2( 2714.51, 823.837 )
 [node name="SavePoint6" parent="." instance=ExtResource( 4 )]
 position = Vector2( 4165.91, 1780.87 )
 
-[node name="enemy1" parent="." instance=ExtResource( 5 )]
+[node name="EntraTemploRubidia" parent="." instance=ExtResource( 5 )]
+position = Vector2( -765.612, 2605 )
+
+[node name="EntraTemploIndustria" parent="." instance=ExtResource( 5 )]
+position = Vector2( -1020.29, -1426.74 )
+
+[node name="EntraTemploPlanalto" parent="." instance=ExtResource( 5 )]
+position = Vector2( 5033.31, -1618.26 )
+
+[node name="enemy1" parent="." instance=ExtResource( 6 )]
 position = Vector2( -864.322, 1886.62 )
 
-[node name="player" parent="." instance=ExtResource( 6 )]
+[node name="player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 506.045, 543.297 )
 double_jump = true
 dash = true
 
-[node name="Pause" parent="." instance=ExtResource( 7 )]
+[node name="Pause" parent="." instance=ExtResource( 8 )]
 visible = false

@@ -17,3 +17,4 @@ func _on_SavePoint_body_exited(body):
 func _input(event):
 	if percent_visible == 1 && event.is_action_pressed("save"):
 		Save.save_game()
+	
