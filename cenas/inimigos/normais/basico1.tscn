@@ -143,10 +143,6 @@ extents = Vector2( 3391.13, 844.329 )
 ]]
 scale = Vector2( 0.1, 0.1 )
 script = ExtResource( 1 )
-AnimatedSpritePath = NodePath("AnimatedSprite")
-TurnPath = NodePath("Turn")
-AttackPath = NodePath("Attack")
-SleepPath = NodePath("Sleep")
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )

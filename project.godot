@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Novo Projeto de Jogo"
-run/main_scene="res://cenas/main.tscn"
+run/main_scene="res://cenas/TitleScreen/Interface.tscn"
 config/icon="res://icon.png"
 
 [autoload]

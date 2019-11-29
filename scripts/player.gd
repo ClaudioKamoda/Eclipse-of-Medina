@@ -1,21 +1,23 @@
 extends KinematicBody2D
 
-export (NodePath) var timerPath
-export (NodePath) var timerWaitPath
-export (NodePath) var timerAttackPath
-export (NodePath) var AnimatedSpritePath
 
-onready var anim = get_node(AnimatedSpritePath)
-onready var timer_dash = get_node(timerPath)
-onready var timer_wait = get_node(timerWaitPath)
-onready var timer_attack = get_node(timerAttackPath)
+signal health_updated(health)
+signal killed()
+
+
+onready var anim = $AnimatedSprite
+onready var timer_dash = $timer_dash
+onready var timer_wait = $timer_wait
+onready var timer_attack = $timer_attack
 onready var SwordHit = get_node("AnimatedSprite/SwordHit/SwordHit")
 onready var Particles = get_node("AnimatedSprite/SwordHit/Particles2D")
 onready var Particles2 = get_node("AnimatedSprite/SwordHit/Particles2D2")
-
+onready var health = max_health setget _set_health
+onready var invulnerability_timer = $invulnerability
 
 # Variáveis setadas externamente (são bem importantes)
 
+export (float) var max_health = 10
 export (float) var SPEED = 200
 export (float) var JUMP_SPEED = 730
 export (float) var GRAVITY = 30
@@ -119,3 +121,20 @@ func save():
 	return save_dict
 
 
+func damage(amount):
+	if invulnerability_timer.is_stopped():
+		invulnerability_timer.start()
+		_set_health(health - amount)
+
+func kill():
+	print("morreu")
+	pass
+
+func _set_health(value):
+	var prev_health = health
+	health = clamp(value, 0, max_health)
+	if health != prev_health:
+		emit_signal("health_updated", health)
+		if health == 0:
+			kill()
+			emit_signal("killed")

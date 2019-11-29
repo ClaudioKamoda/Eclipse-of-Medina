@@ -101,15 +101,12 @@ extents = Vector2( 18.4022, 28.4622 )
 "player",
 ]]
 script = ExtResource( 1 )
-timerPath = NodePath("timer_dash")
-timerWaitPath = NodePath("timer_wait")
-timerAttackPath = NodePath("timer_attack")
-AnimatedSpritePath = NodePath("AnimatedSprite")
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 3, 0 )
 frames = SubResource( 1 )
 animation = "Atacar"
+frame = 4
 playing = true
 offset = Vector2( -22, -14 )
 flip_h = true
@@ -171,6 +168,10 @@ drag_margin_top = 0.1
 drag_margin_right = 0.1
 drag_margin_bottom = 0.1
 editor_draw_drag_margin = true
+
+[node name="invulnerability" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="area_entered" from="AnimatedSprite/SwordHit" to="." method="_on_SwordHit_area_entered"]
 [connection signal="body_entered" from="AnimatedSprite/SwordHit" to="." method="_on_SwordHit_body_entered"]
