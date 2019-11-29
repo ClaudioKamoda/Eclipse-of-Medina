@@ -168,20 +168,13 @@ position = Vector2( 869.207, 505.486 )
 [node name="SavePoint2" parent="." instance=ExtResource( 4 )]
 position = Vector2( -581.977, 2683.97 )
 
-[node name="SavePoint3" parent="." instance=ExtResource( 4 )]
+[node name="SavePoint4" parent="." instance=ExtResource( 4 )]
 position = Vector2( -2121.08, -521.247 )
 
-[node name="SavePoint4" parent="." instance=ExtResource( 4 )]
+[node name="SavePoint5" parent="." instance=ExtResource( 4 )]
 position = Vector2( 3329.3, -1552.9 )
 
-<<<<<<< HEAD
 [node name="SavePoint7" parent="." instance=ExtResource( 4 )]
-=======
-[node name="SavePoint5" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2714.51, 823.837 )
-
-[node name="SavePoint6" parent="." instance=ExtResource( 4 )]
->>>>>>> c4720eea8e9df9f90f66abc77447c2ff986ad7ec
 position = Vector2( 4165.91, 1780.87 )
 
 [node name="enemy1" parent="." instance=ExtResource( 5 )]

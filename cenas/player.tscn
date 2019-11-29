@@ -101,12 +101,19 @@ extents = Vector2( 18.4022, 28.4622 )
 "player",
 ]]
 script = ExtResource( 1 )
+max_health = null
+SPEED = null
+JUMP_SPEED = null
+GRAVITY = null
+DASH_SPEED = null
+double_jump = null
+dash = null
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 3, 0 )
 frames = SubResource( 1 )
 animation = "Atacar"
-frame = 4
+frame = 2
 playing = true
 offset = Vector2( -22, -14 )
 flip_h = true

@@ -27,7 +27,6 @@ config/icon="res://icon.png"
 [autoload]
 
 Save="*res://scripts/Save.gd"
-Global="*res://scripts/Global.gd"
 
 [input]
 
