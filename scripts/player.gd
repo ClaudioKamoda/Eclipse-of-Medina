@@ -1,21 +1,22 @@
 extends KinematicBody2D
 
-export (NodePath) var timerPath
-export (NodePath) var timerWaitPath
-export (NodePath) var timerAttackPath
-export (NodePath) var AnimatedSpritePath
+signal health_updated(health)
+signal killed()
 
-onready var anim = get_node(AnimatedSpritePath)
-onready var timer_dash = get_node(timerPath)
-onready var timer_wait = get_node(timerWaitPath)
-onready var timer_attack = get_node(timerAttackPath)
+onready var anim = $AnimatedSprite
+onready var timer_dash = $timer_dash
+onready var timer_wait = $timer_wait
+onready var timer_attack = $timer_attack
 onready var SwordHit = get_node("AnimatedSprite/SwordHit/SwordHit")
 onready var Particles = get_node("AnimatedSprite/SwordHit/Particles2D")
 onready var Particles2 = get_node("AnimatedSprite/SwordHit/Particles2D2")
-
+onready var invulnerability_timer = $invulnerability
+onready var health_bar = $HealthBar
+onready var game_over = $GameOver
 
 # Variáveis setadas externamente (são bem importantes)
 
+export (float) var max_health = 100
 export (float) var SPEED = 200
 export (float) var JUMP_SPEED = 730
 export (float) var GRAVITY = 30
@@ -23,6 +24,7 @@ export (float) var DASH_SPEED = 1000
 export (bool) var double_jump = false
 export (bool) var dash = false
 
+onready var health = max_health setget _set_health
 
 # Variáveis auxiliares
 
@@ -32,10 +34,13 @@ var do_dash = false
 var wait_dash = false
 var attack = false
 var attacking = false
+var hurt = false
+var death = false
 
 func _ready():
 	print(Global.Position)
 	set_position(Global.Position)
+	game_over.set_visible_characters(0)
 
 
     #Atualiza todo momento
@@ -91,6 +96,9 @@ func _on_timer_attack_timeout():
 func _on_AnimatedSprite_animation_finished():
 	attack = false
 	attacking = false
+	hurt = false
+	if death:
+		kill()
 
 func _on_SwordHit_area_entered(area):
 	if area.is_in_group("hurtbox"):
@@ -122,3 +130,25 @@ func save():
 	return save_dict
 
 
+func damage(amount):
+	if invulnerability_timer.is_stopped():
+		invulnerability_timer.start()
+		_set_health(health - amount)
+
+func kill():
+	print("entrou")
+	var i = 1
+	while i <= 8:
+		game_over.set_visible_characters(i)
+		i += 1
+	get_tree().paused = true
+
+func _set_health(value):
+	var prev_health = health
+	health = clamp(value, 0, max_health)
+	if health != prev_health:
+		hurt = true
+		emit_signal("health_updated", health, prev_health - health)
+		if health == 0:
+			death = true
+			emit_signal("killed")

@@ -1,15 +1,12 @@
 extends KinematicBody2D
 
-export (NodePath) var AnimatedSpritePath
-export (NodePath) var TurnPath
-export (NodePath) var AttackPath
-export (NodePath) var SleepPath
 
-onready var anim = get_node(AnimatedSpritePath)
+onready var anim = $AnimatedSprite
 onready var SwordHit = get_node("AnimatedSprite/SwordHit/Sword")
-onready var turn = get_node(TurnPath)
-onready var wait_attack = get_node(AttackPath)
-onready var sleep = get_node(SleepPath)
+onready var turn = $Turn
+onready var wait_attack = $Attack
+onready var sleep = $Sleep
+
 
 # Variáveis setadas externamente (são bem importantes)
 
@@ -18,6 +15,7 @@ export (float) var JUMP_SPEED = 730
 export (float) var GRAVITY = 30
 export (float) var pos_x = -869.058  #posições de restart
 export (float) var pos_y = 1893.475
+export (int) var damage = 10
 
 
 # Variáveis auxiliares
@@ -115,7 +113,7 @@ func _sleep_time():   #faz o inimigo parar por um tempo
 
 func _on_SwordHit_body_entered(body):
 	if body.is_in_group("player"):
-		print("Damage player")
+		body.damage(damage) #dano no player
 
 
 func _on_Detecta_body_entered(body):

@@ -8,7 +8,6 @@ var Wall_Jump = false
 var BolaDeFogo = false
 var Clones = false
 var SuperForca = false
-var JaSalvou = 0
 
 var pos_Rubidia = Vector2(-765.81366, 2719.35083)
 var pos_Industria = Vector2(-1020.472839, -1312.64917)
