@@ -44,16 +44,20 @@ alignment = 1
 [node name="ContinueButton" parent="Menu/HBoxContainer/Buttons" instance=ExtResource( 3 )]
 margin_right = 360.0
 margin_bottom = 80.0
+botao = "Continuar"
 
 [node name="NewGameButton" parent="Menu/HBoxContainer/Buttons" instance=ExtResource( 4 )]
 margin_top = 84.0
 margin_right = 360.0
 margin_bottom = 164.0
+botao = "Novo Jogo"
 
 [node name="CreditosButton" parent="Menu/HBoxContainer/Buttons" instance=ExtResource( 5 )]
 margin_top = 168.0
 margin_right = 360.0
 margin_bottom = 248.0
+scene_to_load = "res://cenas/Creditos.tscn"
+botao = "Creditos"
 
 [node name="FadeIn" parent="." instance=ExtResource( 6 )]
 visible = false

@@ -3,7 +3,6 @@ extends Node
 const SAVE_PATH = "res://save.json"
 
 func _ready():
-	#load_game()
 	pass
 
 func save_game():

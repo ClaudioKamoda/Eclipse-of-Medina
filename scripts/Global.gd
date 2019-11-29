@@ -1,6 +1,6 @@
 extends Node
 
-var Position
+var Position = Vector2(506, 543)
 var Health = 5
 var Double_Jump = false
 var Dash = false
