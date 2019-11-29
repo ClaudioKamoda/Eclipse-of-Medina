@@ -1,9 +1,7 @@
 extends KinematicBody2D
 
-
 signal health_updated(health)
 signal killed()
-
 
 onready var anim = $AnimatedSprite
 onready var timer_dash = $timer_dash

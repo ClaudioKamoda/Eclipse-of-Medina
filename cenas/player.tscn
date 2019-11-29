@@ -129,8 +129,8 @@ script = ExtResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 3, 0 )
 frames = SubResource( 1 )
-animation = "Death"
-frame = 9
+animation = "Corrida"
+frame = 5
 playing = true
 offset = Vector2( -22, -14 )
 flip_h = true

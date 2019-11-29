@@ -182,7 +182,6 @@ position = Vector2( 4165.91, 1780.87 )
 
 [node name="enemy1" parent="." instance=ExtResource( 6 )]
 position = Vector2( -864.322, 1886.62 )
-damage = 50
 
 [node name="player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 506.045, 543.297 )
