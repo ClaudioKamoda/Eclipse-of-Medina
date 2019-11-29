@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -8,8 +8,7 @@
 [ext_resource path="res://cenas/EntraTemplo.tscn" type="PackedScene" id=6]
 [ext_resource path="res://cenas/inimigos/normais/basico1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://cenas/player.tscn" type="PackedScene" id=8]
-[ext_resource path="res://cenas/HealthBar.tscn" type="PackedScene" id=9]
-[ext_resource path="res://cenas/Pause.tscn" type="PackedScene" id=10]
+[ext_resource path="res://cenas/Pause.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -170,7 +169,7 @@ shape = SubResource( 9 )
 position = Vector2( 869.207, 505.486 )
 
 [node name="SavePoint2" parent="." instance=ExtResource( 5 )]
-position = Vector2( -581.977, 2683.97 )
+position = Vector2( -162.674, 2681.97 )
 
 [node name="SavePoint3" parent="." instance=ExtResource( 5 )]
 position = Vector2( -2121.08, -521.247 )
@@ -195,17 +194,8 @@ position = Vector2( -864.322, 1886.62 )
 
 [node name="player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 506.045, 543.297 )
-double_jump = true
-dash = true
 
-[node name="HealthBar" parent="player" instance=ExtResource( 9 )]
-margin_left = -478.916
-margin_top = -277.168
-margin_right = -438.916
-margin_bottom = -237.168
-rect_scale = Vector2( 0.8, 0.8 )
-
-[node name="Pause" parent="player" instance=ExtResource( 10 )]
+[node name="Pause" parent="player" instance=ExtResource( 9 )]
 margin_left = -506.045
 margin_top = -543.297
 margin_right = -506.045
