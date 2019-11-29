@@ -1,14 +1,15 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://imagens/Tileset/Tiles_64x64.png" type="Texture" id=3]
 [ext_resource path="res://imagens/Tileset/poste.png" type="Texture" id=4]
 [ext_resource path="res://cenas/SavePoint.tscn" type="PackedScene" id=5]
-[ext_resource path="res://cenas/inimigos/normais/basico1.tscn" type="PackedScene" id=6]
-[ext_resource path="res://cenas/player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://cenas/HealthBar.tscn" type="PackedScene" id=8]
-[ext_resource path="res://cenas/Pause.tscn" type="PackedScene" id=9]
+[ext_resource path="res://cenas/EntraTemplo.tscn" type="PackedScene" id=6]
+[ext_resource path="res://cenas/inimigos/normais/basico1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://cenas/player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://cenas/HealthBar.tscn" type="PackedScene" id=9]
+[ext_resource path="res://cenas/Pause.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -180,22 +181,31 @@ position = Vector2( 3329.3, -1552.9 )
 [node name="SavePoint5" parent="." instance=ExtResource( 5 )]
 position = Vector2( 4165.91, 1780.87 )
 
-[node name="enemy1" parent="." instance=ExtResource( 6 )]
+[node name="EntraTemploRubidia" parent="." instance=ExtResource( 6 )]
+position = Vector2( -765.8, 2605.35 )
+
+[node name="EntraTemploIndustria" parent="." instance=ExtResource( 6 )]
+position = Vector2( -1020.5, -1426.58 )
+
+[node name="EntraTemploPlanalto" parent="." instance=ExtResource( 6 )]
+position = Vector2( 5033.15, -1618.78 )
+
+[node name="enemy1" parent="." instance=ExtResource( 7 )]
 position = Vector2( -864.322, 1886.62 )
 
-[node name="player" parent="." instance=ExtResource( 7 )]
+[node name="player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 506.045, 543.297 )
 double_jump = true
 dash = true
 
-[node name="HealthBar" parent="player" instance=ExtResource( 8 )]
+[node name="HealthBar" parent="player" instance=ExtResource( 9 )]
 margin_left = -478.916
 margin_top = -277.168
 margin_right = -438.916
 margin_bottom = -237.168
 rect_scale = Vector2( 0.8, 0.8 )
 
-[node name="Pause" parent="player" instance=ExtResource( 9 )]
+[node name="Pause" parent="player" instance=ExtResource( 10 )]
 margin_left = -506.045
 margin_top = -543.297
 margin_right = -506.045
