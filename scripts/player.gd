@@ -35,14 +35,17 @@ var wait_dash = false
 var attack = false
 var attacking = false
 
-
-
 func _ready():
-	pass
+	print(Global.Position)
+	set_position(Global.Position)
+
 
     #Atualiza todo momento
 func _physics_process(delta):
 	
+	if(Input.is_action_pressed("attack")):
+		print(position)
+		
 	#Em qualquer estado, faz o flip do sprite, collision do ataque e partículas
 	if(movedir > 0):              
 		if(anim.flip_h == true):

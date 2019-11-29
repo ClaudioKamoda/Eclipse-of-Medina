@@ -13,4 +13,6 @@ func _on_Button_pressed(scene_to_load):
 	$FadeIn.fade_in()
 
 func _on_FadeIn_fade_finished():
+	#if scene_path_to_load == "res://main.tscn":
+	Save.load_game()
 	get_tree().change_scene(scene_path_to_load)
