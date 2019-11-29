@@ -29,14 +29,15 @@ func load_game():
 	save_file.open(SAVE_PATH, File.READ)
 	
 	var data = {}
-	data.parse_json(save_file.get_as_text())
+	data = parse_json(save_file.get_as_text())
 	
 	for node_path in data.keys():
 		var node = get_node(node_path)
 		for attribute in data[node_path]:
 			if attribute == "pos":
-				node.set_position(Vector2(data[node_path]['pos']['x'], data[node_path]['pos']['y'])) 
-			else:
-				node.set(attribute, data[node_path][attribute])
+				#node.set_position(Vector2(data[node_path]['pos']['x'], data[node_path]['pos']['y'])) 
+				Global.Position = Vector2(data[node_path]['pos']['x'], data[node_path]['pos']['y'])
+			#else:
+			#	node.set(attribute, data[node_path][attribute])
 		
 	pass
