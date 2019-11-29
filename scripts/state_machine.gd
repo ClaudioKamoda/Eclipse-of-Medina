@@ -44,4 +44,5 @@ func add_pilha(value):
 	pilha.append(value)
 	
 func remove_pilha():
-	pilha.remove(pilha.size() - 1)
+	if pilha.size() > 0:
+		pilha.remove(pilha.size() - 1)

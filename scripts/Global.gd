@@ -1,9 +1,10 @@
 extends Node
 
 var Position = Vector2(506, 543)
-var Health = 5
-var Double_Jump = false
-var Dash = false
+var Health = 100
+var Max_Health = 100
+var Double_Jump = true
+var Dash = true
 var Wall_Jump = false
 var BolaDeFogo = false
 var Clones = false

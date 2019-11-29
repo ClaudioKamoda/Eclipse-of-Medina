@@ -1,11 +1,14 @@
 extends KinematicBody2D
 
+signal health_enemy_updated(health, amount)
+signal enemy_killed(number)
 
 onready var anim = $AnimatedSprite
 onready var SwordHit = get_node("AnimatedSprite/SwordHit/Sword")
 onready var turn = $Turn
 onready var wait_attack = $Attack
 onready var sleep = $Sleep
+onready var collision = $CollisionShape2D
 
 
 # Variáveis setadas externamente (são bem importantes)
@@ -16,6 +19,9 @@ export (float) var GRAVITY = 30
 export (float) var pos_x = -869.058  #posições de restart
 export (float) var pos_y = 1893.475
 export (int) var damage = 10
+export (int) var max_health = 3
+
+onready var health = max_health setget _set_health
 
 
 # Variáveis auxiliares
@@ -32,6 +38,9 @@ var animationF = false
 var sleepTime = false
 var auxSleep = false
 var distance = 0
+var hurt = false
+var death = false
+var respawn = false
 
 func _ready():
 	pass
@@ -102,6 +111,12 @@ func _apply_stop():  #estado de idle
 	
 	velocity = move_and_slide(velocity, Vector2(0,-1))
 
+func _apply_death():  #estado de idle
+	velocity.x = 0
+	velocity.y = 0
+	
+	velocity = move_and_slide(velocity, Vector2(0,-1))
+
 
 func _sleep_time():   #faz o inimigo parar por um tempo
 	if(auxSleep):
@@ -129,3 +144,29 @@ func _on_Detecta_body_exited(body):
 
 func _on_AnimatedSprite_animation_finished():
 	animationF = true
+	hurt = false
+	if death:
+		kill()
+	
+func damage_enemy(amount):
+	_set_health(health - amount)
+
+func kill():
+	emit_signal("enemy_killed", 1)
+	collision.set_disabled(true)
+	visible = false
+	print("morreu")
+
+func _set_health(value):
+	var prev_health = health
+	health = clamp(value, 0, max_health)
+	print(health)
+	if health != prev_health:
+		hurt = true
+		emit_signal("health_enemy_updated", health, prev_health - health)
+		if health == 0:
+			death = true
+
+
+func _on_Respawn_respawnded():
+	respawn = true

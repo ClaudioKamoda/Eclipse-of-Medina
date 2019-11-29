@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-signal health_updated(health)
+signal health_updated(health, amount)
 signal killed()
 
 onready var anim = $AnimatedSprite
@@ -17,17 +17,17 @@ onready var black_overlay = $BlackOverlay
 onready var pause = $Pause
 
 
+
 # Variáveis setadas externamente (são bem importantes)
 
-export (float) var max_health = 100
 export (float) var SPEED = 200
 export (float) var JUMP_SPEED = 730
 export (float) var GRAVITY = 30
 export (float) var DASH_SPEED = 1000
-export (bool) var double_jump = false
-export (bool) var dash = false
 
-onready var health = max_health setget _set_health
+#Variáveis globais
+var double_jump = Global.Double_Jump
+var dash = Global.Dash
 
 # Variáveis auxiliares
 
@@ -48,10 +48,7 @@ func _ready():
 
     #Atualiza todo momento
 func _physics_process(delta):
-	
-	if(Input.is_action_pressed("attack")):
-		print(position)
-		
+
 	#Em qualquer estado, faz o flip do sprite, collision do ataque e partículas
 	if(movedir > 0):              
 		if(anim.flip_h == true):
@@ -115,11 +112,11 @@ func _on_SwordHit_area_entered(area):
 func _on_SwordHit_body_entered(body):
 	if body.is_in_group("enemy"):
 		if(Particles.is_emitting()):
-			print("Damage2")
 			Particles2.set_emitting(true)
+			body.damage_enemy(1)
 		else:
-			print("Damage")
 			Particles.set_emitting(true)
+			body.damage_enemy(1)
 
 func save():
 	var save_dict = {
@@ -136,7 +133,7 @@ func save():
 func damage(amount):
 	if invulnerability_timer.is_stopped():
 		invulnerability_timer.start()
-		_set_health(health - amount)
+		_set_health(Global.Health - amount)
 
 func kill():
 	print("entrou")
@@ -147,11 +144,11 @@ func kill():
 	get_tree().paused = true
 
 func _set_health(value):
-	var prev_health = health
-	health = clamp(value, 0, max_health)
-	if health != prev_health:
+	var prev_health = Global.Health
+	Global.Health = clamp(value, 0, Global.Max_Health)
+	if Global.Health != prev_health:
 		hurt = true
-		emit_signal("health_updated", health, prev_health - health)
-		if health == 0:
+		emit_signal("health_updated", Global.Health, prev_health - Global.Health)
+		if Global.Health == 0:
 			death = true
 			emit_signal("killed")

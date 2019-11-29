@@ -1,4 +1,8 @@
-extends Label
+extends Area2D
+
+signal health_updated
+
+onready var label = $Label
 
 func _ready():
 	#verifica_save(event)
@@ -6,15 +10,17 @@ func _ready():
 
 func _on_SavePoint_body_entered(body):
 	if body.name == "player":
-		percent_visible = 1
+		label.percent_visible = 1
 	else: 
-		percent_visible = 0
+		label.percent_visible = 0
 
 func _on_SavePoint_body_exited(body):
 	if body.name == "player":
-		percent_visible = 0
+		label.percent_visible = 0
 
 func _input(event):
-	if percent_visible == 1 && event.is_action_pressed("save"):
+	if label.percent_visible == 1 && event.is_action_pressed("save"):
+		Global.Health = Global.Max_Health
+		emit_signal("health_updated", Global.Health, Global.Health)
 		Save.save_game()
 	

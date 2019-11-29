@@ -138,7 +138,6 @@ func _get_transition(delta):
 
 		states.hurt:
 			if !(parent.hurt):
-				print(pilha[pilha.size() - 1])
 				var aux = pilha[pilha.size() - 1]
 				remove_pilha()
 				return states[aux]

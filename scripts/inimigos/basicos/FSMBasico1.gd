@@ -17,13 +17,14 @@ func _input(event):
 func _state_logic(delta):
 	if state == states.vigia:
 		parent._apply_movement()
-	elif state == states.touro:
+	elif state == states.touro || state == states.hurt:
 		parent._apply_touro()
-	elif state == states.idle:
+	elif state == states.idle || state == states.sleep:
 		parent._apply_stop()
+	elif state == states.death:
+		parent._apply_death()
 	else:
 		parent._apply_attack()
-
 func _get_transition(delta):
 	match state:
 
@@ -36,12 +37,18 @@ func _get_transition(delta):
 						parent.set_position(Vector2(parent.pos_x, parent.pos_y))
 						parent.movedir = 1
 						return states.vigia
+			if parent.hurt:
+				add_pilha("hurt")
+				return states.hurt
 
 		states.touro:
 			if parent.touro == false:
 				return states.idle
 			elif parent.distance <= 60:
 				return states.attack
+			if parent.hurt:
+				add_pilha("touro")
+				return states.hurt
 
 		states.idle:
 			if parent.touro:
@@ -49,6 +56,9 @@ func _get_transition(delta):
 			elif parent.distance >= 500:
 				parent.movedir = 1
 				return states.vigia
+			if parent.hurt:
+				add_pilha("idle")
+				return states.hurt
 
 		states.attack:
 			if parent.distance > 60:
@@ -60,6 +70,28 @@ func _get_transition(delta):
 			elif parent.repeat:
 				parent.SwordHit.set_disabled(false)
 				parent.repeat = false
+			if parent.hurt:
+				add_pilha("attack")
+				return states.hurt
+
+		states.hurt:
+			if !(parent.hurt):
+				var aux = pilha[pilha.size() - 1]
+				remove_pilha()
+				return states[aux]
+			if parent.death:
+				return states.death
+
+		states.death:
+			if parent.respawn:
+				parent.set_position(Vector2(parent.pos_x, parent.pos_y))
+				parent.movedir = 1
+				parent.health = parent.max_health
+				parent.respawn = false
+				parent.death = false
+				parent.collision.set_disabled(false)
+				parent.visible = true
+				return states.vigia
 
 
 	return null
@@ -84,6 +116,14 @@ func _enter_state(new_state, old_state):
 			parent.animationF = false
 			parent.SwordHit.set_disabled(false)
 			parent.anim.play("Attack")
+
+		states.hurt:
+			parent.animationF = false
+			parent.anim.play("Hurt")
+
+		states.death:
+			parent.animationF = false
+			parent.anim.play("Die")
 
 func _exit_state(old_state, new_state):
 	pass
