@@ -19,12 +19,16 @@ func _state_logic(delta):
 		parent._apply_movement()
 	elif state == states.touro || state == states.hurt:
 		parent._apply_touro()
-	elif state == states.idle || state == states.sleep:
+	elif state == states.idle:
 		parent._apply_stop()
 	elif state == states.death:
 		parent._apply_death()
+	elif state == states.sleep:
+		parent._sleep_time()
 	else:
 		parent._apply_attack()
+
+
 func _get_transition(delta):
 	match state:
 
@@ -44,11 +48,12 @@ func _get_transition(delta):
 		states.touro:
 			if parent.touro == false:
 				return states.idle
-			elif parent.distance <= 60:
+			elif parent.distance <= 70 && !parent.delay:
 				return states.attack
 			if parent.hurt:
 				add_pilha("touro")
 				return states.hurt
+
 
 		states.idle:
 			if parent.touro:
@@ -61,20 +66,16 @@ func _get_transition(delta):
 				return states.hurt
 
 		states.attack:
-			if parent.distance > 60:
+			if parent.animationF:
 				parent.SwordHit.set_disabled(true)
-				parent._sleep_time()
-				
-				if parent.sleepTime == false:
-					return states.touro
-			elif parent.repeat:
-				parent.SwordHit.set_disabled(false)
-				parent.repeat = false
+				return states.sleep
+
 			if parent.hurt:
 				add_pilha("attack")
 				return states.hurt
 
 		states.hurt:
+			parent.SwordHit.set_disabled(true)
 			if !(parent.hurt):
 				var aux = pilha[pilha.size() - 1]
 				remove_pilha()
@@ -93,6 +94,13 @@ func _get_transition(delta):
 				parent.visible = true
 				return states.vigia
 
+		states.sleep:
+			if parent.hurt:
+				add_pilha("sleep")
+				return states.hurt
+			if parent.sleep.time_left < 0.2:
+				return states.touro
+
 
 	return null
 
@@ -110,9 +118,11 @@ func _enter_state(new_state, old_state):
 			parent.animationF = false
 			parent.anim.play("Idle")
 
+		states.sleep:
+			parent.animationF = false
+			parent.anim.play("Idle")
+
 		states.attack:
-			parent.sleepTime = true
-			parent.auxSleep = true
 			parent.animationF = false
 			parent.SwordHit.set_disabled(false)
 			parent.anim.play("Attack")
@@ -124,6 +134,7 @@ func _enter_state(new_state, old_state):
 		states.death:
 			parent.animationF = false
 			parent.anim.play("Die")
+
 
 func _exit_state(old_state, new_state):
 	pass

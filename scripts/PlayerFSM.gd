@@ -32,6 +32,7 @@ func _input(event):
 			if(parent.anim.flip_h == false):
 				parent.movedir = 1
 			parent.SPEED += 800
+			parent.wait_dash = true
 			parent.timer_dash.start()
 			
 	if [states.parado, states.run, states.jump, states.double_jump, states.fall].has(state):  #primeiro ataque

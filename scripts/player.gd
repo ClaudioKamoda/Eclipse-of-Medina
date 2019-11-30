@@ -82,7 +82,6 @@ func _apply_movement():
 func _on_Timer_timeout(): #timer_dash
 	SPEED = 200
 	do_dash = false
-	wait_dash = true
 	timer_wait.start()
 	
 func _on_timer_wait_timeout():  #tempo para dar o dash novamente
@@ -136,7 +135,6 @@ func damage(amount):
 		_set_health(Global.Health - amount)
 
 func kill():
-	print("entrou")
 	var i = 1
 	while i <= 8:
 		game_over.set_visible_characters(i)

@@ -9,6 +9,7 @@ onready var turn = $Turn
 onready var wait_attack = $Attack
 onready var sleep = $Sleep
 onready var collision = $CollisionShape2D
+onready var delay_timer = $Delay
 
 
 # Variáveis setadas externamente (são bem importantes)
@@ -31,16 +32,14 @@ var velocity = Vector2(0,0)
 var touro = false
 var alvo = PhysicsBody2D
 var virar = true
-var repeatAtk = false
-var repeat = false
 var direction = Vector2()
 var animationF = false
-var sleepTime = false
-var auxSleep = false
 var distance = 0
 var hurt = false
 var death = false
 var respawn = false
+var delay = false
+
 
 func _ready():
 	pass
@@ -51,7 +50,7 @@ func _physics_process(delta):
 		distance = (alvo.global_position - global_position).length()
 	
 	#Em qualquer estado, faz o flip do sprite, collision do ataque e partículas
-	if(movedir > 0):              
+	if(movedir > 0):      
 		if(anim.flip_h == true):
 			anim.flip_h = false
 			SwordHit.position.x = 275.35
@@ -80,27 +79,32 @@ func _apply_movement():  #estado de vigia
 
 func _apply_touro():  #estado de touro
 	direction = (alvo.global_position - global_position).normalized()
+	
+	if direction.x > 0 && movedir < 0 && !delay || direction.x < 0 && movedir > 0 && !delay:
+		anim.play("Idle")
+		delay = true
+		delay_timer.start()
+
+	if delay_timer.is_stopped():
+		anim.play("Run")
+		movedir = direction.x
+		velocity.x = movedir * SPEED
+		velocity.y += GRAVITY
+		
+		delay = false
+
+		velocity = move_and_slide(velocity, Vector2(0,-1))
+
+
+
+func _apply_attack():  #estado de ataque
+	direction = (alvo.global_position - global_position).normalized()
 	movedir = direction.x
 	
 	velocity.x = movedir * SPEED
 	velocity.y += GRAVITY
 	
 	velocity = move_and_slide(velocity, Vector2(0,-1))
-	
-func _apply_attack():  #estado de ataque
-	if !repeatAtk:
-		SwordHit.set_disabled(true)
-		wait_attack.start()
-		repeatAtk = true
-
-	if wait_attack.time_left < 0.05:
-		animationF = false
-		anim.play("Attack")
-		repeatAtk = false
-		repeat = true
-		
-	if(animationF == true):
-		anim.play("Idle")
 
 
 func _apply_stop():  #estado de idle
@@ -119,11 +123,8 @@ func _apply_death():  #estado de idle
 
 
 func _sleep_time():   #faz o inimigo parar por um tempo
-	if(auxSleep):
+	if(sleep.is_stopped()):
 		sleep.start()
-		auxSleep = false
-	if sleep.time_left < 0.05:
-		sleepTime = false
 
 
 func _on_SwordHit_body_entered(body):
@@ -155,12 +156,10 @@ func kill():
 	emit_signal("enemy_killed", 1)
 	collision.set_disabled(true)
 	visible = false
-	print("morreu")
 
 func _set_health(value):
 	var prev_health = health
 	health = clamp(value, 0, max_health)
-	print(health)
 	if health != prev_health:
 		hurt = true
 		emit_signal("health_enemy_updated", health, prev_health - health)
@@ -170,3 +169,4 @@ func _set_health(value):
 
 func _on_Respawn_respawnded():
 	respawn = true
+

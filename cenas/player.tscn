@@ -136,7 +136,7 @@ script = ExtResource( 1 )
 position = Vector2( 3, 0 )
 frames = SubResource( 1 )
 animation = "Corrida"
-frame = 7
+frame = 2
 playing = true
 offset = Vector2( -22, -14 )
 flip_h = true
@@ -202,7 +202,7 @@ drag_margin_bottom = 0.1
 editor_draw_drag_margin = true
 
 [node name="invulnerability" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.5
 one_shot = true
 
 [node name="GameOver" type="Label" parent="."]
