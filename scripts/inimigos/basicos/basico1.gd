@@ -21,6 +21,7 @@ export (float) var pos_x = -869.058  #posições de restart
 export (float) var pos_y = 1893.475
 export (int) var damage = 10
 export (int) var max_health = 3
+export (int) var number_enemy
 
 onready var health = max_health setget _set_health
 
@@ -153,7 +154,7 @@ func damage_enemy(amount):
 	_set_health(health - amount)
 
 func kill():
-	emit_signal("enemy_killed", 1)
+	emit_signal("enemy_killed", number_enemy)
 	collision.set_disabled(true)
 	visible = false
 
