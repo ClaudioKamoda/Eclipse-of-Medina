@@ -3,6 +3,7 @@ extends Area2D
 signal respawnded()
 
 onready var enemy1 = get_parent().get_node('enemy1')
+onready var enemy2 = get_parent().get_node('enemy2')
 onready var player = get_parent().get_node('player')
 var respawn = false
 var enemy
@@ -21,5 +22,7 @@ func _on_enemy_killed(number):
 	match number:
 		1:
 			enemy = enemy1
+		2:
+			enemy = enemy2
 	
 	remove_child(enemy)
