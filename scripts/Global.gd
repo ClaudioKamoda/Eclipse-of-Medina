@@ -1,7 +1,7 @@
 extends Node
 
 var Position = Vector2(506, 543)
-var Health
+var Health = 100
 var Max_Health = 100
 var Double_Jump = false
 var Dash = false
