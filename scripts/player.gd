@@ -26,8 +26,8 @@ export (float) var GRAVITY = 30
 export (float) var DASH_SPEED = 1000
 
 #Variáveis globais
-var double_jump = Global.Double_Jump
-var dash = Global.Dash
+var double_jump
+var dash
 
 # Variáveis auxiliares
 
@@ -52,6 +52,8 @@ func verif_checkpoint():
 func _ready():
 	print(Global.Position)
 	set_position(Global.Position)
+	double_jump = Global.Double_Jump
+	dash = Global.Dash
 	game_over.set_visible_characters(0)
 
 
@@ -131,10 +133,12 @@ func save():
 	var save_dict = {
 		pos = {
 			x = get_position().x,
-			y = get_position().y
+			y = get_position().y,
 		},
-		dash = dash,
-		double_jump = double_jump
+		dash = Global.Dash,
+		double_jump = Global.Double_Jump,
+		max_health = Global.Max_Health,
+		health = Global.Health,
 	}
 	return save_dict
 

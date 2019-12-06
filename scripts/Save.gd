@@ -36,7 +36,13 @@ func load_game():
 			if attribute == "pos":
 				#node.set_position(Vector2(data[node_path]['pos']['x'], data[node_path]['pos']['y'])) 
 				Global.Position = Vector2(data[node_path]['pos']['x'], data[node_path]['pos']['y'])
-			#else:
-			#	node.set(attribute, data[node_path][attribute])
+			elif attribute == "max_health":
+				Global.Max_Health = "max_health"
+			elif attribute == "health":
+				Global.Health = data[node_path]['health']
+			elif attribute == "dash":
+				Global.Dash = data[node_path]['dash']
+			elif attribute == "double_jump":
+				Global.Double_Jump = data[node_path]['double_jump']
 		
 	pass
