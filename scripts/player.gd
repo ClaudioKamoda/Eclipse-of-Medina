@@ -41,10 +41,13 @@ var hurt = false
 var death = false
 
 func verif_checkpoint():
-	if(position.x < -800 && position.y < 600):
-		Global.checkpoint1 = true
-	if(position.y < -400):
-		Global.checkpoint2 = true
+	if(position.x < -800 && position.y < -400):
+		Global.checkpoint = 1
+	elif(position.y > -400 && position.y < 2000):
+		if !Global.checkpoint == 1:
+			Global.checkpoint = 2
+	else:
+		Global.checkpoint = 3
 
 func _ready():
 	print(Global.Position)

@@ -168,6 +168,7 @@ func _set_health(value):
 			death = true
 
 
-func _on_Respawn_respawnded():
-	respawn = true
+func _on_Respawn_respawnded(player_position):
+	if (player_position - global_position).length() > 1500:
+		respawn = true
 

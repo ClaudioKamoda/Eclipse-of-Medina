@@ -17,3 +17,6 @@ func _ready():
 	SavePoint4.connect("health_updated", player_health_bar, "_on_health_updated")
 	SavePoint5.connect("health_updated", player_health_bar, "_on_health_updated")
 	
+
+func _on_enemy_killed(number):
+	pass # Replace with function body.

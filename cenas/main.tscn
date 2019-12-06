@@ -437,6 +437,24 @@ pos_x = -324.437
 pos_y = 2017.14
 number_enemy = 2
 
+[node name="enemy3" parent="." instance=ExtResource( 25 )]
+position = Vector2( 255.038, 2015.66 )
+pos_x = 255.038
+pos_y = 2015.66
+number_enemy = 3
+
+[node name="enemy4" parent="." instance=ExtResource( 25 )]
+position = Vector2( 441, 2718.25 )
+pos_x = 441.0
+pos_y = 2718.25
+number_enemy = 4
+
+[node name="enemy5" parent="." instance=ExtResource( 25 )]
+position = Vector2( -2.25, 2720.5 )
+pos_x = -2.25
+pos_y = 2720.5
+number_enemy = 5
+
 [node name="player" parent="." instance=ExtResource( 26 )]
 editor/display_folded = true
 position = Vector2( 506.045, 543.297 )
@@ -481,8 +499,15 @@ shape = SubResource( 24 )
 wait_time = 0.8
 one_shot = true
 [connection signal="enemy_killed" from="enemy1" to="Respawn" method="_on_enemy_killed"]
+[connection signal="enemy_killed" from="enemy2" to="Respawn" method="_on_enemy_killed"]
+[connection signal="enemy_killed" from="enemy3" to="Respawn" method="_on_enemy_killed"]
+[connection signal="enemy_killed" from="enemy4" to="Respawn" method="_on_enemy_killed"]
+[connection signal="enemy_killed" from="enemy5" to="Respawn" method="_on_enemy_killed"]
+[connection signal="respawnded" from="Respawn" to="enemy4" method="_on_Respawn_respawnded"]
 [connection signal="respawnded" from="Respawn" to="enemy2" method="_on_Respawn_respawnded"]
 [connection signal="respawnded" from="Respawn" to="enemy1" method="_on_Respawn_respawnded"]
+[connection signal="respawnded" from="Respawn" to="enemy5" method="_on_Respawn_respawnded"]
+[connection signal="respawnded" from="Respawn" to="enemy3" method="_on_Respawn_respawnded"]
 [connection signal="body_entered" from="Espinhos" to="Espinhos" method="_on_Espinhos_body_entered"]
 [connection signal="body_entered" from="Acido" to="Acido" method="_on_Acido_body_entered"]
 [connection signal="timeout" from="Acido/Timer" to="Acido" method="_on_Timer_timeout"]

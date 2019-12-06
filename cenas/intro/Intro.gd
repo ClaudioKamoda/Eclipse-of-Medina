@@ -13,7 +13,7 @@ func _ready():
 
 
 func _process(delta):
-	if timer.is_stopped():
+	if timer.is_stopped() || Input.is_action_just_pressed("ui_accept"):
 		match(i):
 			0:
 				texture = load("res://imagens/Intro/hands.jpg")
@@ -88,5 +88,5 @@ func _process(delta):
 				i += 1
 			
 			9:
-				pass #transicao
+				get_tree().change_scene("res://cenas/main.tscn")
 		timer.start()

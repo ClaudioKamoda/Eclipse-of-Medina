@@ -50,6 +50,7 @@ botao = "Continuar"
 margin_top = 84.0
 margin_right = 360.0
 margin_bottom = 164.0
+scene_to_load = "res://cenas/intro/Intro.tscn"
 botao = "Novo Jogo"
 
 [node name="CreditosButton" parent="Menu/HBoxContainer/Buttons" instance=ExtResource( 5 )]
