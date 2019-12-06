@@ -10,6 +10,8 @@ extents = Vector2( 121.421, 146.759 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 48
+use_filter = true
+extra_spacing_top = -15
 font_data = ExtResource( 3 )
 
 [node name="EntraTemplo" type="Area2D"]
@@ -22,12 +24,14 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = -63.6583
-margin_top = -138.196
-margin_right = 65.3417
-margin_bottom = -80.1959
+margin_left = -72.5226
+margin_top = -137.457
+margin_right = 74.4774
+margin_bottom = -18.4573
 custom_fonts/font = SubResource( 2 )
-text = "Entrar"
+text = "Entrar
+Aperte E"
+align = 1
 percent_visible = 0.0
 
 [node name="FadeIn" parent="." instance=ExtResource( 4 )]

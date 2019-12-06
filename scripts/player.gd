@@ -40,6 +40,12 @@ var attacking = false
 var hurt = false
 var death = false
 
+func verif_checkpoint():
+	if(position.x < -800 && position.y < 600):
+		Global.checkpoint1 = true
+	if(position.y < -400):
+		Global.checkpoint2 = true
+
 func _ready():
 	print(Global.Position)
 	set_position(Global.Position)
@@ -48,7 +54,8 @@ func _ready():
 
     #Atualiza todo momento
 func _physics_process(delta):
-
+	verif_checkpoint()
+	
 	#Em qualquer estado, faz o flip do sprite, collision do ataque e partículas
 	if(movedir > 0):              
 		if(anim.flip_h == true):

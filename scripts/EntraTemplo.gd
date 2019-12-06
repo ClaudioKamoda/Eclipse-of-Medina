@@ -23,8 +23,9 @@ func _input(event):
 		$FadeIn.fade_in()
 
 func _on_FadeIn_fade_finished():
+	#get_tree().change_scene(ProxCena)
 	if Lugar == "Rubidia":
-		Global.Position = Vector2(1696, 543)
+		Global.Position = Vector2(1649, 543)
 	elif Lugar == "Industria":
 		print("oi")
 	elif Lugar == "Planalto":

@@ -18,11 +18,13 @@ scale = Vector2( 0.574888, 0.574888 )
 texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = -23.6137
+margin_left = -28.0458
 margin_top = -67.2478
-margin_right = 24.3863
-margin_bottom = -53.2478
-text = "SALVAR"
+margin_right = 27.9542
+margin_bottom = -36.2478
+text = "SALVAR
+Aperte B"
+align = 1
 percent_visible = 0.0
 [connection signal="body_entered" from="." to="." method="_on_SavePoint_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_SavePoint_body_exited"]
