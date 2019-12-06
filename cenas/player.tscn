@@ -239,10 +239,10 @@ uppercase = true
 percent_visible = 0.0
 
 [node name="HealthBar" parent="." instance=ExtResource( 50 )]
-margin_left = -466.027
-margin_top = -279.248
-margin_right = -426.027
-margin_bottom = -239.248
+margin_left = -493.752
+margin_top = -295.328
+margin_right = -453.752
+margin_bottom = -255.328
 [connection signal="health_updated" from="." to="HealthBar" method="_on_health_updated"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="area_entered" from="AnimatedSprite/SwordHit" to="." method="_on_SwordHit_area_entered"]
