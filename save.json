@@ -1,1 +1,1 @@
-{"/root/main/player":{"dash":true,"double_jump":true,"pos":{"x":-134.999298,"y":2719.352295}}}
+{"/root/main/player":{"dash":false,"double_jump":false,"health":100,"max_health":100,"pos":{"x":-150.184479,"y":2719.351074}}}

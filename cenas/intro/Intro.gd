@@ -74,7 +74,7 @@ func _process(delta):
 			
 			6:
 				texture = load("res://imagens/Intro/misery.jpg")
-				text.text = "O resultado das guerras para o reino foram desastrosos, deixando muitas pessoas desabrigadas e sem alimentos."
+				text.text = "Os resultados das guerras foram desastrosos para o reino, deixando muitas pessoas desabrigadas e sem alimentos."
 				i += 1
 			
 			7:
